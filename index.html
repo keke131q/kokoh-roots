@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         * {
@@ -161,7 +162,7 @@
 
         /* Empathy Section */
         .empathy {
-            padding: 0 1rem 6rem;
+            padding: 0 1rem 4rem;
             background-color: var(--gray-50);
             position: relative;
             z-index: 20;
@@ -192,7 +193,7 @@
 
         .empathy-list {
             list-style: none;
-            margin-bottom: 3.5rem;
+            margin-bottom: 0;
             display: grid;
             gap: 1.5rem;
         }
@@ -219,15 +220,101 @@
             flex-shrink: 0;
         }
 
-        .empathy-footer {
-            border-top: 1px solid #e5e7eb;
-            padding-top: 2.5rem;
-            text-align: center;
+        /* 新規追加：根拠・データ（Fact）セクション */
+        .fact-section {
+            padding: 2rem 1rem 6rem;
+            background-color: var(--gray-50);
         }
 
-        .empathy-footer p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 1rem; }
-        .empathy-footer p:last-child {
-            font-weight: 700; color: var(--navy-deep); margin-bottom: 0; font-size: 1.15rem; margin-top: 1.5rem;
+        .fact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fact-header h2 {
+            font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+            color: var(--navy-deep);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .fact-header p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .fact-grid {
+            max-width: 64rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .fact-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--navy-light);
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fact-icon {
+            font-size: 2.5rem;
+            color: var(--beige-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .fact-keyword {
+            display: inline-block;
+            background-color: var(--navy-deep);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .fact-card h3 {
+            font-size: 1.15rem;
+            color: var(--navy-deep);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .fact-card p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .fact-summary {
+            max-width: 48rem;
+            margin: 4rem auto 0;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 197, 185, 0.15);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 197, 185, 0.4);
+        }
+
+        .fact-summary p {
+            font-weight: 700;
+            color: var(--navy-deep);
+            font-size: 1.1rem;
+            margin: 0;
         }
 
         /* Story Section */
@@ -267,7 +354,7 @@
         .story-item h3 { font-size: 1.25rem; color: var(--beige); font-weight: 700; }
         .story-item p { font-size: 1.05rem; color: rgba(255, 255, 255, 0.75); line-height: 1.9; }
 
-        /* Turning Point Section (with Image) */
+        /* Turning Point Section (Image Added) */
         .turning-point {
             padding: 7rem 1rem;
             background: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 100%);
@@ -322,7 +409,7 @@
             font-weight: 700; color: var(--navy-deep); font-size: 1.15rem; padding-left: 1rem; border-left: 3px solid var(--beige);
         }
 
-        /* Mission Section (新規追加) */
+        /* Mission Section (コアメッセージ) */
         .mission {
             position: relative;
             padding: 8rem 1rem;
@@ -339,7 +426,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 22, 40, 0.85); /* 暗めのオーバーレイ */
+            background: rgba(10, 22, 40, 0.85);
             z-index: 1;
         }
 
@@ -472,33 +559,10 @@
             }
         }
 
-        /* 講師画像の枠設定 */
         .profile-image-frame {
-            width: 220px;
-            height: 220px;
-            flex-shrink: 0;
-            border-radius: 12px;
-            background-color: var(--gray-light);
-            border: 2px solid var(--beige);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            width: 220px; height: 220px; flex-shrink: 0; border-radius: 12px; background-color: var(--gray-light); border: 2px solid var(--beige); box-shadow: 0 10px 25px rgba(0,0,0,0.08); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 0.9rem;
         }
-
-        .profile-image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            /* 画像が挿入されるまで非表示にする場合は opacity: 0; または display: none; */
-        }
+        .profile-image-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
 
         .profile-info { flex: 1; }
         .profile-name { font-size: 1.8rem; color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
@@ -572,12 +636,46 @@
                 <li class="empathy-item fade-in"><span>✓</span><span>志を明確にしたい</span></li>
                 <li class="empathy-item fade-in"><span>✓</span><span>自分のルーツを知りたい</span></li>
             </ul>
-            <div class="empathy-footer">
-                <p class="fade-in">これらの思いは、決して弱さではありません。</p>
-                <p class="fade-in">それは、あなたの心が「本当の自分」を求めている証です。</p>
-                <p class="fade-in">多くの人が、この問いを避けて生きています。</p>
-                <p class="fade-in">でも、あなたはここにいます。<br>その勇気こそが、人生を変える第一歩です。</p>
+        </div>
+    </section>
+
+    <section class="fact-section">
+        <div class="fact-header fade-in">
+            <h2>そのモヤモヤは、あなたの弱さではない。<br>社会構造が引き起こす「3つの必然」</h2>
+            <p>なぜ今、あなたは「自分の存在価値」を見つめ直そうとしているのか。<br>心理学やデータから見ても、それは極めて正常な反応です。</p>
+        </div>
+        
+        <div class="fact-grid">
+            <div class="fact-card fade-in">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+                <div class="fact-keyword">年齢：25〜35歳の壁</div>
+                <h3>クォーターライフ・クライシス</h3>
+                <p>20代後半から30代前半は、仕事の要領を掴む一方で「キャリアの踊り場」を迎え、「自分の人生はこのままでいいのか」と人生の意義を見失いやすい時期です。これは心理学でも立証された正常な葛藤です。</p>
             </div>
+            
+            <div class="fact-card fade-in">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="fact-keyword">職業：ホワイトワーカー</div>
+                <h3>成果の「手触り感」の喪失</h3>
+                <p>1日中PCに向かい、データを処理する日々。自分の仕事が「誰の役に立っているか」という物理的な実感が得にくく、社会の歯車として労働のリアリティと誇りを喪失しやすい構造に置かれています。</p>
+            </div>
+            
+            <div class="fact-card fade-in">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="fact-keyword">性別：男性へのプレッシャー</div>
+                <h3>「存在価値＝仕事」の呪縛</h3>
+                <p>日本社会において、男性は無意識のうちに「仕事でのステータスが自分の価値」と思い込まされがちです。そのため、仕事に意味を見出せなくなった瞬間、自己肯定感が根底から揺らいでしまうのです。</p>
+            </div>
+        </div>
+
+        <div class="fact-summary fade-in">
+            <p>これらが重なる今、あなたが「自分の根っこ」を見つめ直そうとするのは、<br>極めて自然で、必要な防衛反応なのです。</p>
         </div>
     </section>
 
