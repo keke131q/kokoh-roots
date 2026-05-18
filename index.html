@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roots デビュー会 | 人生の根っこと向き合うプログラム</title>
+    <title>【6/27開催】Roots デビュー会 | 人生の根っこと向き合うプログラム</title>
     <meta name="description" content="自分の人生に誇りを持ち、『自分として生まれてきて、本当によかった』と心から思える状態へ導くプログラム">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,13 +37,17 @@ body {
   line-height: 1.8; 
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
-  /* 日本語の文節での美しい自動改行（対応ブラウザ向け）とフォールバック */
-  word-break: auto-phrase;
   overflow-wrap: break-word;
 }
 
-/* --- 改行制御 --- */
-.ib { display: inline-block; vertical-align: top; }
+/* --- 文字組み・改行制御 --- */
+/* 長文は両端揃えで美しく見せる */
+p.justify {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* デバイスごとの改行制御 */
 .pc-br { display: block; } 
 .sp-br { display: none; }
 @media (max-width: 768px) { 
@@ -52,30 +56,28 @@ body {
 }
 
 h1, h2, h3, h4 { font-weight: 700; letter-spacing: 0.05em; }
-p { line-height: 1.8; letter-spacing: 0.05em; }
+p { line-height: 1.9; letter-spacing: 0.05em; }
 a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: var(--navy-deep); }
-button { cursor: pointer; border: none; font-family: 'Noto Serif JP', serif; }
-img { max-width: 100%; height: auto; display: block; }
 
 /* --- 共通アニメーション --- */
 .fade-in {
   opacity: 0; 
   transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .fade-in.visible { 
   opacity: 1; 
   transform: translateY(0); 
 }
 
-/* ボタンの光るアニメーション */
-@keyframes pulse-soft {
+@keyframes pulse-gold {
   0% { box-shadow: 0 0 0 0 rgba(197, 165, 112, 0.6); }
-  70% { box-shadow: 0 0 0 25px rgba(197, 165, 112, 0); }
+  70% { box-shadow: 0 0 0 20px rgba(197, 165, 112, 0); }
   100% { box-shadow: 0 0 0 0 rgba(197, 165, 112, 0); }
 }
-.animate-pulse { animation: pulse-soft 2.5s infinite; }
+.animate-pulse { animation: pulse-gold 2.5s infinite; }
+
+img { max-width: 100%; height: auto; display: block; }
 
 /* --- 2. HERO SECTION --- */
 .hero {
@@ -84,7 +86,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; 
   align-items: center; 
   justify-content: center;
-  padding: 8rem 1.5rem 12rem;
+  padding: 8rem 1.5rem 10rem;
   background-color: var(--navy-deep);
   background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; 
@@ -97,28 +99,41 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(to bottom, rgba(10, 22, 40, 0.5) 0%, rgba(10, 22, 40, 0.95) 100%);
   z-index: 1;
 }
-.hero-content { position: relative; z-index: 10; max-width: 50rem; text-align: center; }
+.hero-content { position: relative; z-index: 10; max-width: 55rem; text-align: center; width: 100%; }
+
+/* デビュー会用特別バッジ */
+.event-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold) 0%, #b08d50 100%);
+  color: var(--navy-deep);
+  font-weight: 900;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  padding: 0.6rem 2rem;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
 .hero-label {
-  display: inline-block; margin-bottom: 2rem;
-  padding: 0.6rem 1.5rem;
-  border: 1px solid var(--gold); border-radius: 9999px;
-  font-size: clamp(0.8rem, 2.5vw, 0.9rem); font-weight: 700; letter-spacing: 0.15em;
-  color: var(--gold); background: rgba(10, 22, 40, 0.4); backdrop-filter: blur(4px);
+  display: block; margin-bottom: 2rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem); font-weight: 700; letter-spacing: 0.15em;
+  color: var(--gold);
 }
 .hero h1 {
-  font-size: clamp(1.8rem, 7vw, 3.8rem);
+  font-size: clamp(2rem, 6vw, 3.8rem);
   color: var(--white); margin-bottom: 2.5rem;
   line-height: 1.4; text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
-.hero-subtitle { font-size: clamp(0.95rem, 3.5vw, 1.15rem); color: rgba(255, 255, 255, 0.85); margin-bottom: 3.5rem; }
-.hero-text { font-size: clamp(0.9rem, 3vw, 1.1rem); color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem; }
+.hero-subtitle { font-size: clamp(1rem, 3.5vw, 1.2rem); color: rgba(255, 255, 255, 0.9); margin-bottom: 3.5rem; line-height: 1.8; }
+.hero-text { font-size: clamp(0.95rem, 3vw, 1.1rem); color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem; line-height: 1.8;}
 
 /* --- 3. EMPATHY SECTION --- */
 .empathy {
   padding: 0 1rem 5rem;
   background-color: var(--gray-50);
   position: relative; z-index: 20;
-  margin-top: -6rem;
+  margin-top: -5rem;
 }
 .empathy-card {
   max-width: 50rem; margin: 0 auto;
@@ -129,7 +144,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 768px) { .empathy-card { padding: 3rem 1.2rem; } }
 
 .empathy h2 {
-  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
   color: var(--navy-deep); margin-bottom: 3rem;
   text-align: center; line-height: 1.5;
 }
@@ -137,12 +152,9 @@ img { max-width: 100%; height: auto; display: block; }
 .empathy-item {
   display: flex; align-items: center; gap: 1rem;
   padding: 1rem 1.5rem; background: var(--beige-light);
-  border-radius: 4px; font-size: 1.05rem; transition: transform 0.3s ease;
+  border-radius: 4px; font-size: clamp(0.95rem, 3vw, 1.1rem); transition: transform 0.3s ease;
 }
-@media (max-width: 768px) { 
-  .empathy-item { font-size: 0.95rem; padding: 0.8rem 1rem; } 
-}
-.empathy-item:hover { transform: translateX(5px); }
+@media (max-width: 768px) { .empathy-item { padding: 0.8rem 1rem; } }
 .empathy-item span:first-child {
   color: var(--gold); font-weight: 900; font-size: 1.3rem; flex-shrink: 0;
 }
@@ -150,7 +162,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* --- 4. FACT SECTION --- */
 .fact-section { padding: 4rem 1.5rem 6rem; background-color: var(--gray-50); }
 .fact-header { text-align: center; margin-bottom: 4rem; max-width: 48rem; margin-left: auto; margin-right: auto; }
-.fact-header h2 { font-size: clamp(1.3rem, 4.5vw, 1.8rem); color: var(--navy-deep); line-height: 1.7; margin-bottom: 1.5rem;}
+.fact-header h2 { font-size: clamp(1.3rem, 4.5vw, 1.8rem); color: var(--navy-deep); line-height: 1.6; margin-bottom: 1.5rem;}
+.fact-header p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-light); }
 
 .fact-grid {
   max-width: 68rem; margin: 0 auto;
@@ -161,17 +174,16 @@ img { max-width: 100%; height: auto; display: block; }
   background-color: var(--white); border-radius: 12px;
   padding: 3rem 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   border-bottom: 4px solid var(--navy-light); transition: transform 0.3s ease;
-  text-align: center;
+  text-align: center; display: flex; flex-direction: column; align-items: center;
 }
-.fact-card:hover { transform: translateY(-5px); }
 .fact-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
 .fact-keyword {
   display: inline-block; background-color: var(--navy-deep); color: var(--white);
   padding: 0.35rem 1.2rem; border-radius: 9999px;
-  font-size: clamp(0.75rem, 2.5vw, 0.85rem); font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 0.05em;
+  font-size: 0.85rem; font-weight: 700; margin-bottom: 1.2rem;
 }
-.fact-card h3 { font-size: clamp(1.1rem, 3vw, 1.2rem); color: var(--navy-deep); margin-bottom: 1.2rem; }
-.fact-card p { font-size: clamp(0.9rem, 2.5vw, 0.95rem); color: var(--text-main); line-height: 1.8; text-align: left; }
+.fact-card h3 { font-size: clamp(1.1rem, 3vw, 1.25rem); color: var(--navy-deep); margin-bottom: 1.2rem; line-height: 1.5; }
+.fact-card p { font-size: clamp(0.95rem, 2.5vw, 1rem); color: var(--text-main); margin-top: auto; }
 
 .fact-summary {
   max-width: 50rem; margin: 5rem auto 0;
@@ -179,7 +191,7 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(197, 165, 112, 0.1);
   border: 1px solid var(--gold); border-radius: 8px;
 }
-.fact-summary p { font-weight: 700; font-size: clamp(0.95rem, 3.5vw, 1.15rem); line-height: 1.8; color: var(--navy-deep); }
+.fact-summary p { font-weight: 700; font-size: clamp(1rem, 3.5vw, 1.15rem); line-height: 1.8; color: var(--navy-deep); }
 
 /* --- 5. STORY SECTION --- */
 .story {
@@ -194,23 +206,19 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700; font-style: italic;
   color: var(--gold); margin-bottom: 2.5rem; line-height: 1.6;
 }
+.story-intro p { font-size: clamp(0.95rem, 3vw, 1.1rem); color: rgba(255, 255, 255, 0.9); }
 
-.story-items {
-  display: flex; flex-direction: column; gap: 4rem; position: relative;
-}
+.story-items { display: flex; flex-direction: column; gap: 4rem; position: relative; }
 .story-items::before {
   content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 1px;
   background: rgba(212, 197, 185, 0.3);
 }
-@media (max-width: 768px) {
-  .story-items::before { left: 11px; }
-}
+@media (max-width: 768px) { .story-items::before { left: 11px; } }
 
 .story-item { position: relative; padding-left: 3.5rem; }
 .story-item::before {
   content: ''; position: absolute; left: 10px; top: 10px; width: 12px; height: 12px;
-  border-radius: 50%; background: var(--gold);
-  box-shadow: 0 0 0 5px rgba(197, 165, 112, 0.2);
+  border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(197, 165, 112, 0.2);
 }
 @media (max-width: 768px) {
   .story-item { padding-left: 2.8rem; }
@@ -218,29 +226,25 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .story-item h3 { font-size: clamp(1.15rem, 3.5vw, 1.3rem); color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
-.story-item p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: rgba(255, 255, 255, 0.75); line-height: 1.9; }
+.story-item p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: rgba(255, 255, 255, 0.85); }
 
 /* --- 6. TURNING POINT --- */
 .turning-point { padding: 8rem 1.5rem; background-color: var(--white); }
 .turning-point-content { max-width: 70rem; margin: 0 auto; }
-.turning-point-layout {
-  display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
-}
+.turning-point-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
 @media (min-width: 992px) { .turning-point-layout { grid-template-columns: 1fr 1.2fr; gap: 4rem; } }
 
 .tp-image-wrapper {
-  border-radius: 12px; overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08); height: 500px;
+  border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); height: 500px;
 }
 @media (max-width: 768px) { .tp-image-wrapper { height: 350px; } }
 .tp-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-.turning-point-text h2 {
-  font-size: clamp(1.5rem, 5vw, 2.2rem);
-  color: var(--navy-deep); margin-bottom: 2.5rem; line-height: 1.5;
-}
+.turning-point-text h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); color: var(--navy-deep); margin-bottom: 2.5rem; line-height: 1.5; text-align: center; }
+@media (min-width: 992px) { .turning-point-text h2 { text-align: left; } }
+
 .turning-point-items { display: flex; flex-direction: column; gap: 1.5rem; }
-.turning-point-item { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); line-height: 1.9; }
+.turning-point-item { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); }
 .turning-point-item.bold {
   font-weight: 700; font-size: clamp(1.05rem, 3.5vw, 1.2rem); color: var(--navy-deep);
   border-left: 4px solid var(--gold); padding-left: 1.2rem;
@@ -261,12 +265,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .mission-content { position: relative; z-index: 10; max-width: 55rem; margin: 0 auto; }
 .mission-label { color: var(--gold); font-weight: 700; margin-bottom: 2.5rem; display: block; letter-spacing: 0.15em; }
-.mission h2 { font-size: clamp(1.6rem, 6vw, 3rem); line-height: 1.6; margin-bottom: 3rem; }
+.mission h2 { font-size: clamp(1.6rem, 6vw, 2.8rem); line-height: 1.6; margin-bottom: 3rem; }
 .mission h2 span { color: var(--gold); text-decoration: underline; text-underline-offset: 8px; }
-.mission p {
-  font-size: clamp(0.95rem, 3vw, 1.2rem);
-  line-height: 2; color: rgba(255, 255, 255, 0.95); margin-bottom: 1.5rem;
-}
+.mission p { font-size: clamp(1rem, 3vw, 1.2rem); color: rgba(255, 255, 255, 0.95); margin-bottom: 1.5rem; }
 
 .mission-highlight {
   margin-top: 4rem; padding: 2rem 1.5rem;
@@ -274,7 +275,7 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid rgba(197, 165, 112, 0.3); border-radius: 12px;
   display: inline-block; width: 100%; max-width: 600px;
 }
-.mission-highlight p { font-weight: 700; font-size: clamp(1rem, 3.5vw, 1.4rem); color: var(--gold); margin: 0;}
+.mission-highlight p { font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem); color: var(--gold); margin: 0;}
 
 /* --- 8. FEATURES SECTION --- */
 .features { padding: 8rem 0; background-color: var(--gray-light); }
@@ -288,14 +289,11 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; gap: 3rem; align-items: flex-start;
   transition: transform 0.3s ease; position: relative; overflow: hidden;
 }
-.feature-card::after {
-  content: ''; position: absolute; left: 0; top: 0; width: 6px; height: 100%;
-  background: var(--gold);
-}
+.feature-card::after { content: ''; position: absolute; left: 0; top: 0; width: 6px; height: 100%; background: var(--gold); }
 .feature-number { font-size: 4rem; font-weight: 900; color: var(--gold); opacity: 0.2; line-height: 1; flex-shrink: 0; }
 .feature-body { flex: 1; }
 .feature-body h3 { font-size: clamp(1.2rem, 3.5vw, 1.4rem); color: var(--navy-deep); margin-bottom: 1.2rem; line-height: 1.5; }
-.feature-body p { color: var(--text-light); line-height: 2; font-size: clamp(0.95rem, 3vw, 1.05rem); }
+.feature-body p { color: var(--text-light); font-size: clamp(0.95rem, 3vw, 1.05rem); }
 
 @media (max-width: 768px) {
   .features-grid {
@@ -305,14 +303,12 @@ img { max-width: 100%; height: auto; display: block; }
     scrollbar-width: none;
   }
   .features-grid::-webkit-scrollbar { display: none; }
-  
   .feature-card {
     width: 85vw; flex-shrink: 0; scroll-snap-align: center; 
     padding: 2.5rem 1.5rem; flex-direction: column; gap: 1rem;
     text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.08);
   }
   .feature-card::after { width: 100%; height: 6px; left: 0; top: 0; } 
-  
   .feature-number { font-size: 3rem; margin-bottom: 0.5rem; text-align: center; display: block; width: 100%; }
 }
 
@@ -320,15 +316,14 @@ img { max-width: 100%; height: auto; display: block; }
 .vision { padding: 8rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
 .vision h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); margin-bottom: 4rem; line-height: 1.6; color: var(--gold); }
 .vision-items { display: flex; flex-direction: column; gap: 2rem; max-width: 50rem; margin: 0 auto; text-align: center; }
-.vision-item { font-size: clamp(0.95rem, 3vw, 1.1rem); line-height: 2; color: rgba(255,255,255,0.9); }
+.vision-item { font-size: clamp(0.95rem, 3vw, 1.1rem); color: rgba(255,255,255,0.9); }
 
 .flow { padding: 7rem 1.5rem; background-color: var(--gray-light); }
 .flow h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--navy-deep); text-align: center; margin-bottom: 4rem; }
 .flow-items { max-width: 45rem; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
 .flow-item {
   background-color: var(--white); padding: 2rem; border-radius: 8px;
-  display: flex; align-items: center; gap: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  display: flex; align-items: center; gap: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 @media (max-width: 640px) { .flow-item { flex-direction: column; text-align: center; padding: 1.5rem; } }
 .flow-step {
@@ -337,7 +332,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; flex-shrink: 0;
 }
 .flow-item h3 { font-size: clamp(1.1rem, 3.5vw, 1.15rem); color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
-.flow-item p { font-size: clamp(0.9rem, 3vw, 1rem); color: var(--text-light); line-height: 1.8; }
+.flow-item p { font-size: clamp(0.95rem, 3vw, 1rem); color: var(--text-light); }
 
 /* --- 10. PROFILE SECTION --- */
 .profile { padding: 8rem 1.5rem; background-color: var(--white); }
@@ -351,16 +346,14 @@ img { max-width: 100%; height: auto; display: block; }
 .profile-top { display: flex; flex-direction: row; align-items: center; gap: 3.5rem; margin-bottom: 4rem; }
 @media (max-width: 992px) {
   .profile-top { flex-direction: column; text-align: center; gap: 2.5rem; }
-  .profile-box { padding: 3rem 1.5rem; }
+  .profile-box { padding: 2rem 1rem; }
 }
 
 .profile-image-frame {
   width: 250px; height: 250px; flex-shrink: 0;
   border-radius: 12px; background-color: var(--gray-light);
-  border: 1px solid var(--beige);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--beige); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
   color: var(--text-light); font-size: 0.9rem;
 }
 .profile-image-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
@@ -371,64 +364,65 @@ img { max-width: 100%; height: auto; display: block; }
   display: block; font-size: clamp(0.9rem, 3vw, 1rem); color: var(--beige-dark);
   font-weight: 700; margin-bottom: 1.5rem; line-height: 1.6;
 }
-.profile-desc p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); line-height: 1.8; text-align: left; }
+.profile-desc p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); }
 
-.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
 .profile-card {
   background-color: var(--white); border-top: 4px solid var(--navy-light);
   border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 .profile-card h3 {
   font-size: clamp(1.05rem, 3vw, 1.15rem); color: var(--beige-dark); font-weight: 700;
-  margin-bottom: 1.2rem; padding-bottom: 0.8rem;
-  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px dashed rgba(0,0,0,0.1);
 }
-.profile-card p { font-size: clamp(0.9rem, 2.5vw, 1rem); color: var(--text-main); line-height: 1.9; }
+.profile-card p { font-size: clamp(0.95rem, 2.5vw, 1rem); color: var(--text-main); }
 
-/* --- 11. CTA & FOOTER --- */
+/* --- 11. CTA & BUTTONS --- */
 .cta { padding: 8rem 1.5rem; background: var(--navy-deep); text-align: center; color: var(--white); }
-.cta-content { max-width: 48rem; margin: 0 auto; }
-.cta-content h2 { font-size: clamp(1.6rem, 5vw, 2.5rem); line-height: 1.6; margin-bottom: 3.5rem; }
-.cta-text p { font-size: clamp(0.95rem, 3.5vw, 1.25rem); color: rgba(255,255,255,0.9); margin-bottom: 1rem; }
-
-/* 問い合わせボタンの大幅な強調とUI/UX最適化 */
-.cta-button-wrapper {
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
+.cta-content { max-width: 55rem; margin: 0 auto; }
+.cta-content h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); line-height: 1.6; margin-bottom: 2rem; }
+.cta-badge {
+  display: inline-block; background: var(--white); color: var(--navy-deep);
+  font-weight: 900; font-size: clamp(0.9rem, 3vw, 1.1rem); padding: 0.5rem 1.5rem;
+  border-radius: 4px; margin-bottom: 2rem; letter-spacing: 0.1em;
 }
-.cta-button {
-  display: inline-flex;
+.cta-text p { font-size: clamp(1rem, 3.5vw, 1.2rem); color: rgba(255,255,255,0.9); margin-bottom: 1rem; }
+
+/* 2つのボタンのレイアウト */
+.cta-actions {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
   justify-content: center;
-  padding: 1.4rem 4rem; /* 大きく確保 */
+}
+@media (min-width: 768px) {
+  .cta-actions { flex-direction: row; gap: 2rem; }
+}
+
+/* メインボタン（問い合わせ・申し込み） */
+.cta-button-main {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 1.4rem 3.5rem; width: 100%; max-width: 400px;
   background: linear-gradient(135deg, var(--gold) 0%, #b08d50 100%);
-  color: var(--navy-deep); 
-  font-weight: 900; /* 極太に */
-  font-size: clamp(1.2rem, 5vw, 1.6rem); /* 文字も大きく */
-  border-radius: 9999px; 
-  box-shadow: 0 10px 30px rgba(197, 165, 112, 0.4); 
-  transition: all 0.3s ease;
-  letter-spacing: 0.1em; 
-  text-decoration: none;
-  width: auto;
+  color: var(--navy-deep); font-weight: 900; font-size: clamp(1.15rem, 4vw, 1.4rem);
+  border-radius: 9999px; transition: all 0.3s ease; letter-spacing: 0.1em;
 }
-@media (max-width: 768px) {
-  .cta-button {
-    width: 90%; /* スマホの横幅に合わせて押しやすく */
-    max-width: 400px;
-    padding: 1.2rem 2rem;
-  }
+.cta-button-main:hover { transform: translateY(-3px); filter: brightness(1.1); }
+.cta-button-main i { margin-left: 10px; font-size: 0.9em; }
+
+/* サブボタン（まずは話す） */
+.cta-button-sub {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 1.2rem 2.5rem; width: 100%; max-width: 400px;
+  background: rgba(10, 22, 40, 0.8);
+  border: 2px solid var(--gold);
+  color: var(--gold); font-weight: 700; font-size: clamp(1rem, 3.5vw, 1.2rem);
+  border-radius: 9999px; transition: all 0.3s ease; letter-spacing: 0.05em;
 }
-.cta-button:hover { 
-  transform: translateY(-5px); 
-  box-shadow: 0 15px 40px rgba(197, 165, 112, 0.6); 
-  filter: brightness(1.1); 
-}
-.cta-icon {
-  margin-left: 12px;
-  font-size: 0.9em;
-}
+.cta-button-sub:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-3px); }
+.cta-button-sub i { margin-right: 10px; font-size: 1.1em; }
 
 footer {
   padding: 4rem 1.5rem; background-color: #050b14;
@@ -440,25 +434,33 @@ footer p { margin-bottom: 1.5rem; }
 footer a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s ease; margin: 0 0.5rem; }
 footer a:hover { color: var(--gold); }
 footer p:last-child { margin-bottom: 0; }
-
     </style>
 </head>
 <body>
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-label fade-in">人生の根っこと向き合うプログラム</div>
-            <h1 class="fade-in">あなたの人生に、<br>誇りはありますか？</h1>
+            <div class="event-badge fade-in">【6/27開催】Roots 講師デビュー会</div>
+            
+            <span class="hero-label fade-in">人生の根っこと向き合うプログラム</span>
+            
+            <h1 class="fade-in">あなたの人生に、<br class="sp-br">誇りはありますか？</h1>
             <p class="hero-subtitle fade-in">
-                <span class="ib">仕事は順調。給料も悪くない。</span><br>
-                <span class="ib">でも、心の奥底から「自分として生まれてきて、本当によかった」</span><br>
-                <span class="ib">と思えたことはありますか？</span>
+                仕事は順調。給料も悪くない。<br>
+                でも、心の奥底から「自分として生まれてきて、本当によかった」<br class="pc-br">
+                と思えたことはありますか？
             </p>
+            <p class="hero-text fade-in">多くの人は、その問いに答えられません。</p>
             <p class="hero-text fade-in">
-                <span class="ib">多くの人は、その問いに答えられません。</span><br>
-                <span class="ib">それは、あなたが弱いからではありません。</span><br>
-                <span class="ib">あなたが足りないからではありません。</span><br>
-                <span class="ib">ただ、まだ気づいていないだけです。</span>
+                それは、あなたが弱いからではありません。<br>
+                あなたが足りないからではありません。
             </p>
+            <p class="hero-text fade-in">ただ、まだ気づいていないだけです。</p>
+            
+            <div class="cta-actions fade-in" style="margin-top: 3rem;">
+                <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
+                    詳細・お申し込み <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -477,40 +479,36 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="fact-section">
         <div class="fact-header fade-in">
-            <h2>
-                <span class="ib">そのモヤモヤは、あなたの弱さではない。</span><br>
-                <span class="ib">社会構造が引き起こす「3つの必然」。</span>
-            </h2>
+            <h2>そのモヤモヤは、あなたの弱さではない。<br>社会構造が引き起こす「3つの必然」。</h2>
         </div>
         
         <div class="fact-grid">
             <div class="fact-card fade-in">
                 <div class="fact-icon"><i class="fa-solid fa-hourglass-half"></i></div>
                 <div class="fact-keyword">25〜35歳の壁</div>
-                <h3>クォーターライフ・クライシス</h3>
-                <p>20代後半から30代前半は、仕事の要領を掴む一方で「キャリアの踊り場」を迎え、「自分の人生はこのままでいいのか」と人生の意義を見失いやすい時期です。これは心理学でも立証された正常な葛藤です。</p>
+                <h3>クォーターライフ<br class="sp-br">・クライシス</h3>
+                <p class="justify">20代後半から30代前半は、仕事の要領を掴む一方で「キャリアの踊り場」を迎え、「自分の人生はこのままでいいのか」と人生の意義を見失いやすい時期です。これは心理学でも立証された正常な葛藤です。</p>
             </div>
             
             <div class="fact-card fade-in">
                 <div class="fact-icon"><i class="fa-solid fa-laptop-code"></i></div>
                 <div class="fact-keyword">ホワイトワーカーの宿命</div>
-                <h3>成果の「手触り感」の喪失</h3>
-                <p>1日中PCに向かい、データを処理する日々。自分の仕事が「誰の役に立っているか」という物理的な実感が得にくく、社会の歯車として労働のリアリティと誇りを喪失しやすい構造に置かれています。</p>
+                <h3>成果の「手触り感」<br class="sp-br">の喪失</h3>
+                <p class="justify">1日中PCに向かい、データを処理する日々。自分の仕事が「誰の役に立っているか」という物理的な実感が得にくく、社会の歯車として労働のリアリティと誇りを喪失しやすい構造に置かれています。</p>
             </div>
             
             <div class="fact-card fade-in">
                 <div class="fact-icon"><i class="fa-solid fa-user-tie"></i></div>
                 <div class="fact-keyword">男性へのプレッシャー</div>
-                <h3>「存在価値＝仕事」の呪縛</h3>
-                <p>日本社会において、男性は無意識のうちに「仕事でのステータスが自分の価値」と思い込まされがちです。そのため、仕事に意味を見出せなくなった瞬間、自己肯定感が根底から揺らいでしまうのです。</p>
+                <h3>「存在価値＝仕事」<br class="sp-br">の呪縛</h3>
+                <p class="justify">日本社会において、男性は無意識のうちに「仕事でのステータスが自分の価値」と思い込まされがちです。そのため、仕事に意味を見出せなくなった瞬間、自己肯定感が根底から揺らいでしまうのです。</p>
             </div>
         </div>
 
         <div class="fact-summary fade-in">
             <p>
-                <span class="ib">これらが重なる今、</span>
-                <span class="ib">あなたが「自分の根っこ」を見つめ直そうとするのは、</span><br>
-                <span class="ib">極めて自然で、必要な防衛反応なのです。</span>
+                これらが重なる今、<br class="sp-br">あなたが「自分の根っこ」を見つめ直そうとするのは、<br>
+                極めて自然で、必要な防衛反応なのです。
             </p>
         </div>
     </section>
@@ -524,15 +522,15 @@ footer p:last-child { margin-bottom: 0; }
             <div class="story-items">
                 <div class="story-item fade-in">
                     <h3>新卒1社目での挫折</h3>
-                    <p>営業成績は散々。エンジニアに転向しても全く通用せず。「自分は何ができる人間なのか」自信は粉々に砕けました。</p>
+                    <p class="justify">営業成績は散々。エンジニアに転向しても全く通用せず。「自分は何ができる人間なのか」自信は粉々に砕けました。</p>
                 </div>
                 <div class="story-item fade-in">
                     <h3>解雇宣告</h3>
-                    <p>ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。自尊心は完全に消え去りました。</p>
+                    <p class="justify">ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。自尊心は完全に消え去りました。</p>
                 </div>
                 <div class="story-item fade-in">
                     <h3>完全な喪失</h3>
-                    <p>「自分にできることなんて、何一つない。存在している意味もない。」本気で暗闇の中にいました。</p>
+                    <p class="justify">「自分にできることなんて、何一つない。存在している意味もない。」本気で暗闇の中にいました。</p>
                 </div>
             </div>
         </div>
@@ -540,7 +538,7 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="turning-point">
         <div class="turning-point-content">
-            <h2 class="fade-in" style="text-align: center; color: var(--navy-deep); margin-bottom: 4rem;">その時、ある気づきが<br>訪れました。</h2>
+            <h2 class="fade-in" style="text-align: center; color: var(--navy-deep); margin-bottom: 4rem;">その時、ある気づきが<br class="sp-br">訪れました。</h2>
             <div class="turning-point-layout">
                 <div class="tp-image-wrapper fade-in">
                     <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1000&auto=format&fit=crop" alt="温かな木漏れ日が差し込む美しい森">
@@ -549,10 +547,10 @@ footer p:last-child { margin-bottom: 0; }
                 <div class="turning-point-text">
                     <div class="turning-point-items">
                         <p class="turning-point-item fade-in"><strong>ご先祖様と家系について、深く知ったのです。</strong></p>
-                        <p class="turning-point-item fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
-                        <p class="turning-point-item fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
+                        <p class="turning-point-item justify fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
+                        <p class="turning-point-item justify fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
                         <p class="turning-point-item bold fade-in">「自分は、一人で生きているんじゃない。<br>幾千の命が、自分を生かしてくれている。」</p>
-                        <p class="turning-point-item fade-in">その瞬間、命の尊さへの理解が、深い「安心感」となり、自分の人生に誇りが戻りました。</p>
+                        <p class="turning-point-item justify fade-in">その瞬間、命の尊さへの理解が、深い「安心感」となり、自分の人生に誇りが戻りました。</p>
                     </div>
                 </div>
             </div>
@@ -563,17 +561,16 @@ footer p:last-child { margin-bottom: 0; }
         <div class="mission-content">
             <span class="mission-label fade-in">CORE MISSION</span>
             <h2 class="fade-in">
-                <span class="ib">答えは、あなたの</span><br>
+                答えは、あなたの<br>
                 <span>【ここまでの命のバトン(ルーツ)】</span><br>
-                <span class="ib">のなかにある</span>
+                のなかにある
             </h2>
             <p class="fade-in">
-                <span class="ib">あなたが突き抜けるための原動力は、外側ではなく、</span><br>
-                <span class="ib">あなた自身の歴史（ルーツ）の中にすでに存在しています。</span>
+                あなたが突き抜けるための原動力は、外側ではなく、<br class="pc-br">
+                あなた自身の歴史（ルーツ）の中にすでに存在しています。
             </p>
             <p class="fade-in">
-                <span class="ib">自分の命の系譜を知り、</span>
-                <span class="ib">何のために生かされているのかを深く悟る。</span>
+                自分の命の系譜を知り、何のために生かされているのかを深く悟る。
             </p>
             
             <div class="mission-highlight fade-in">
@@ -591,21 +588,21 @@ footer p:last-child { margin-bottom: 0; }
                 <div class="feature-number">01</div>
                 <div class="feature-body">
                     <h3>知識ではなく問いを受け取り、<br>人生そのものへの理解が深まる</h3>
-                    <p>知識はすぐに古くなりますが、本質的な「問い」は一生の財産です。自らの内側から答えを引き出し、人生の目的を圧倒的な解像度で再定義します。</p>
+                    <p class="justify">知識はすぐに古くなりますが、本質的な「問い」は一生の財産です。自らの内側から答えを引き出し、人生の目的を圧倒的な解像度で再定義します。</p>
                 </div>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-number">02</div>
                 <div class="feature-body">
                     <h3>自分の命の尊さを、<br>肚の底から理解できる</h3>
-                    <p>家系を紐解くことで、自分の命が数千年の祈りの結晶であることを体感します。他者比較ではない、揺るぎない自己信頼を確立します。</p>
+                    <p class="justify">家系を紐解くことで、自分の命が数千年の祈りの結晶であることを体感します。他者比較ではない、揺るぎない自己信頼を確立します。</p>
                 </div>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-number">03</div>
                 <div class="feature-body">
                     <h3>志を語り合い、<br>応援しあえる仲間ができる</h3>
-                    <p>人生の根っこを共有し、互いの「志」を本気で応援し合えるコミュニティ。一人では辿り着けない深い気づきを、同志と共に獲得します。</p>
+                    <p class="justify">人生の根っこを共有し、互いの「志」を本気で応援し合えるコミュニティ。一人では辿り着けない深い気づきを、同志と共に獲得します。</p>
                 </div>
             </div>
         </div>
@@ -613,59 +610,38 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="vision">
         <div class="vision-content">
-            <h2 class="fade-in">
-                <span class="ib">このプログラムを受けたあなたは、</span><br>
-                <span class="ib">どんな姿になるのか。</span>
-            </h2>
+            <h2 class="fade-in">このプログラムを受けたあなたは、<br class="sp-br">どんな姿になるのか。</h2>
             <div class="vision-items">
-                <p class="vision-item fade-in">自分の人生に誇りを持ち、「自分として生まれてきて本当によかった」と心から思えている状態。それは単なる自信ではなく、自分の命の価値を他者に提供できる「真の教育者」となった状態です。</p>
-                <p class="vision-item fade-in">あなたが「自分の人生に誇り」を持つ。その変化は日本の未来を作る、尊く大切な一部なのです。</p>
+                <p class="vision-item justify fade-in">自分の人生に誇りを持ち、「自分として生まれてきて本当によかった」と心から思えている状態。それは単なる自信ではなく、自分の命の価値を他者に提供できる「真の教育者」となった状態です。</p>
+                <p class="vision-item justify fade-in">あなたが「自分の人生に誇り」を持つ。その変化は日本の未来を作る、尊く大切な一部なのです。</p>
             </div>
         </div>
     </section>
 
     <section class="flow">
         <div class="flow-header">
-            <h2 class="fade-in">Rootsプログラムへの参加方法</h2>
+            <h2 class="fade-in">参加までのステップ</h2>
         </div>
         <div class="flow-items">
             <div class="flow-item fade-in">
-                <div class="flow-item-header">
-                    <div class="flow-step">STEP 1</div>
-                </div>
+                <div class="flow-item-header"><div class="flow-step">STEP 1</div></div>
                 <div class="flow-text">
-                    <h3>興味がある方から問い合わせいただく</h3>
-                    <p>まずは、お気軽にお問い合わせください。あなたの想いや質問をお聞きします。</p>
+                    <h3>お問い合わせ / 面談予約</h3>
+                    <p class="justify">当ページ下部のボタンより、「まずは話す（Zoom）」または「申し込み（詳細確認）」をご選択ください。</p>
                 </div>
             </div>
             <div class="flow-item fade-in">
-                <div class="flow-item-header">
-                    <div class="flow-step">STEP 2</div>
-                </div>
+                <div class="flow-item-header"><div class="flow-step">STEP 2</div></div>
                 <div class="flow-text">
-                    <h3>
-                        <span class="ib">翼さん / 瑞季さんと</span>
-                        <span class="ib">面談</span>
-                    </h3>
-                    <p>実際にお会いして、深くお話しします。この面談を通じて、あなたが本当に必要なサポートが何かを、一緒に見つけていきます。</p>
+                    <h3>オンライン面談</h3>
+                    <p class="justify">実際にお話しし、あなたの現状のモヤモヤや目標をお伺いします。無理な勧誘は一切ありません。</p>
                 </div>
             </div>
             <div class="flow-item fade-in">
-                <div class="flow-item-header">
-                    <div class="flow-step">STEP 3</div>
-                </div>
+                <div class="flow-item-header"><div class="flow-step">STEP 3</div></div>
                 <div class="flow-text">
                     <h3>プログラムへのご参加</h3>
-                    <p>あなたのペースで、自分のルーツと向き合う旅を始めます。</p>
-                </div>
-            </div>
-            <div class="flow-item fade-in">
-                <div class="flow-item-header">
-                    <div class="flow-step">STEP 4</div>
-                </div>
-                <div class="flow-text">
-                    <h3>志を語り合う仲間との出会い</h3>
-                    <p>同じ志を持つ仲間と出会い、一緒に成長していきます。</p>
+                    <p class="justify">納得いただけましたら、あなたのルーツと向き合う本質的な旅がスタートします。</p>
                 </div>
             </div>
         </div>
@@ -682,12 +658,9 @@ footer p:last-child { margin-bottom: 0; }
                     </div>
                 <div class="profile-info">
                     <div class="profile-name">綿内 賢志</div>
-                    <span class="profile-title">
-                        <span class="ib">通信制高校 キャンパス長 /</span>
-                        <span class="ib">サビアンコーチング 認定講師</span>
-                    </span>
+                    <span class="profile-title">通信制高校 キャンパス長 /<br class="sp-br"> サビアンコーチング 認定講師</span>
                     <div class="profile-desc">
-                        <p>どん底の中で『Roots』と出会い、家系とルーツを知ることで自己信頼を取り戻す。「答えは自分の中にある」という確信を胸に、より多くの日本人に自己信頼の火を灯すため、志範として活動中。</p>
+                        <p class="justify">どん底の中で『Roots』と出会い、家系とルーツを知ることで自己信頼を取り戻す。「答えは自分の中にある」という確信を胸に、より多くの日本人に自己信頼の火を灯すため、志範として活動中。</p>
                     </div>
                 </div>
             </div>
@@ -695,15 +668,15 @@ footer p:last-child { margin-bottom: 0; }
             <div class="profile-grid">
                 <div class="profile-card fade-in">
                     <h3>《幼少期〜大学》</h3>
-                    <p>三世代家族で祖父・祖母と多くの時間を過ごし、家の歴史、土地の歴史、これまでの苦労の話を聞いて育つ。その影響で人一倍強い郷土愛を持つ。大学では生物学を専攻するも、在学中の御縁により「人と関わりながら次世代に価値を遺す事業」を志す。</p>
+                    <p class="justify">三世代家族で祖父・祖母と多くの時間を過ごし、家の歴史、土地の歴史、これまでの苦労の話を聞いて育つ。その影響で人一倍強い郷土愛を持つ。大学では生物学を専攻するも、在学中の御縁により「人と関わりながら次世代に価値を遺す事業」を志す。</p>
                 </div>
                 <div class="profile-card fade-in">
                     <h3>《転職〜教育の道へ》</h3>
-                    <p>飲食業に転職し、約6年間店長を経験。「長いスパンで人の人生に深く関わり、【人を遺す】仕事がしたい」と決意し、2022年より日本最大の通信制高校に転職。大分校のキャンパス長を務めながら、進路指導や職員育成に尽力。</p>
+                    <p class="justify">飲食業に転職し、約6年間店長を経験。「長いスパンで人の人生に深く関わり、【人を遺す】仕事がしたい」と決意し、2022年より日本最大の通信制高校に転職。大分校のキャンパス長を務めながら、進路指導や職員育成に尽力。</p>
                 </div>
                 <div class="profile-card fade-in">
                     <h3>《誇高〜現在》</h3>
-                    <p>2025年2月に初めて『Roots』を受講し、深く感銘を受ける。「より多くの日本人に自己信頼の火を灯したい」と強く願い、志範（講師）として活動をスタート。</p>
+                    <p class="justify">2025年2月に初めて『Roots』を受講し、深く感銘を受ける。「より多くの日本人に自己信頼の火を灯したい」と強く願い、志範（講師）として活動をスタート。</p>
                 </div>
             </div>
         </div>
@@ -711,20 +684,21 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="cta">
         <div class="cta-content">
-            <h2 class="fade-in">
-                <span class="ib">あなたの人生の根っこと向き合う</span><br>
-                <span class="ib">時が来ました。</span>
-            </h2>
+            <div class="cta-badge fade-in">【6/27開催】Roots 綿内賢志 デビュー会</div>
+            
+            <h2 class="fade-in">あなたの人生の根っこと向き合う<br class="sp-br">時が来ました。</h2>
             <div class="cta-text fade-in">
-                <p>今、問い合わせをしてください。</p>
                 <p>その一歩が、あなたの人生を変えます。</p>
-                <p style="color: var(--gold); margin-top: 1.5rem;">その一歩が、日本の未来を変えます。</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: bold;">その一歩が、日本の未来を変えます。</p>
             </div>
             
-            <div class="cta-button-wrapper fade-in">
-                <a href="https://kokoh.co.jp/application/" class="cta-button animate-pulse" target="_blank" rel="noopener noreferrer">
-                    問い合わせる
-                    <i class="fa-solid fa-chevron-right cta-icon"></i>
+            <div class="cta-actions fade-in">
+                <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
+                    詳細・お申し込み <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                
+                <a href="#" class="cta-button-sub">
+                    <i class="fa-regular fa-comments"></i> まずは賢志と話す (無料Zoom)
                 </a>
             </div>
         </div>
@@ -745,7 +719,7 @@ footer p:last-child { margin-bottom: 0; }
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const observerOptions = {
-                threshold: 0.15,
+                threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
 
@@ -768,6 +742,7 @@ footer p:last-child { margin-bottom: 0; }
                 document.body.style.opacity = 1;
             }
             
+            // フォールバック処理（JS遅延対策）
             setTimeout(() => {
                 fadeElements.forEach((element) => {
                     if (!element.classList.contains('visible')) {
@@ -775,7 +750,7 @@ footer p:last-child { margin-bottom: 0; }
                         element.style.transform = 'translateY(0)';
                     }
                 });
-            }, 3000);
+            }, 2500); 
         });
     </script>
     
