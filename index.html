@@ -20,6 +20,7 @@
             --navy-deep: #0a1628;
             --white: #fafafa;
             --beige: #d4c5b9;
+            --beige-dark: #b8a594;
             --text-main: #1a2530;
             --text-light: #5c6c7c;
             --gray-light: #f3f4f6;
@@ -33,7 +34,7 @@
         body {
             font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
             color: var(--text-main);
-            background-color: var(--white);
+            background-color: var(--gray-50);
             line-height: 1.8;
             letter-spacing: 0.05em;
             -webkit-font-smoothing: antialiased;
@@ -67,31 +68,19 @@
 
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes pulse-soft {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: scale(1.02);
-            }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 197, 185, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(212, 197, 185, 0); }
         }
 
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .fade-in.visible {
@@ -100,167 +89,172 @@
         }
 
         .animate-pulse {
-            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse-soft 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
         /* Hero Section */
         .hero {
             position: relative;
-            padding: 8rem 1rem;
-            background-color: var(--white);
+            padding: 12rem 1rem 14rem;
+            background-color: var(--navy-deep);
+            /* 仮の背景画像（静かな深い森と光） */
+            background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* パララックス効果 */
             overflow: hidden;
+            color: var(--white);
         }
 
-        .hero::before,
-        .hero::after {
+        /* ダークなグラデーションオーバーレイで文字を読みやすく、深い安心感を演出 */
+        .hero::before {
             content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        .hero::before {
-            top: 80px;
-            left: 0;
-            width: 384px;
-            height: 384px;
-            background-color: var(--navy-deep);
-        }
-
-        .hero::after {
-            bottom: 0;
-            right: 0;
-            width: 384px;
-            height: 384px;
-            background-color: var(--beige);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 22, 40, 0.5) 0%, rgba(10, 22, 40, 0.9) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
-            max-width: 42rem;
+            max-width: 48rem;
             margin: 0 auto;
             text-align: center;
         }
 
         .hero-label {
             display: inline-block;
-            margin-bottom: 2rem;
-            padding: 0.5rem 1.5rem;
-            border: 1px solid var(--beige);
+            margin-bottom: 2.5rem;
+            padding: 0.75rem 2rem;
+            border: 1px solid rgba(212, 197, 185, 0.5);
+            background: rgba(10, 22, 40, 0.3);
+            backdrop-filter: blur(4px);
             border-radius: 9999px;
             font-size: 0.875rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             color: var(--beige);
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 8vw, 3.75rem);
-            color: var(--navy-deep);
-            margin-bottom: 2rem;
-            line-height: 1.2;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2vw, 1.125rem);
-            color: #374151;
-            margin-bottom: 3rem;
-            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3.5rem;
+            line-height: 2;
         }
 
         .hero-text {
             font-size: clamp(1rem, 2vw, 1.125rem);
-            color: #374151;
-            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
             line-height: 1.8;
         }
 
         .hero-text-bold {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--navy-deep);
+            font-size: clamp(1.125rem, 2vw, 1.35rem);
+            color: var(--beige);
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-top: 3rem;
             line-height: 1.8;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         /* Empathy Section */
         .empathy {
-            padding: 5rem 1rem;
-            background-color: var(--white);
+            padding: 0 1rem 6rem;
+            background-color: var(--gray-50);
+            position: relative;
+            z-index: 20;
+            margin-top: -6rem; /* Heroセクションに重ねる */
         }
 
         .empathy-card {
-            max-width: 48rem;
+            max-width: 52rem;
             margin: 0 auto;
             background-color: var(--white);
-            border-top: 4px solid var(--navy-deep);
-            border-radius: 0.5rem;
-            padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--beige);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         @media (min-width: 640px) {
-            .empathy-card {
-                padding: 3rem;
-            }
+            .empathy-card { padding: 4rem; }
         }
 
         .empathy h2 {
             font-size: clamp(1.5rem, 4vw, 1.875rem);
             color: var(--navy-deep);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .empathy-list {
             list-style: none;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
+            display: grid;
+            gap: 1.5rem;
         }
 
         .empathy-item {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: #374151;
+            font-size: 1.05rem;
+            color: var(--text-main);
             line-height: 1.8;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--gray-light);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+        
+        .empathy-item:hover {
+            transform: translateX(5px);
         }
 
         .empathy-item span:first-child {
-            color: var(--beige);
+            color: var(--beige-dark);
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             flex-shrink: 0;
-            margin-top: 0.25rem;
         }
 
         .empathy-footer {
             border-top: 1px solid #e5e7eb;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
+            text-align: center;
         }
 
         .empathy-footer p {
-            font-size: 1rem;
-            color: #374151;
+            font-size: 1.05rem;
+            color: var(--text-light);
             margin-bottom: 1rem;
-            line-height: 1.8;
         }
 
         .empathy-footer p:last-child {
             font-weight: 700;
             color: var(--navy-deep);
             margin-bottom: 0;
+            font-size: 1.15rem;
+            margin-top: 1.5rem;
         }
 
         /* Story Section */
         .story {
             position: relative;
-            padding: 5rem 1rem;
-            background-color: var(--navy-deep);
+            padding: 7rem 1rem;
+            background: linear-gradient(135deg, #050b14 0%, var(--navy-deep) 100%);
             color: var(--white);
         }
 
@@ -270,49 +264,78 @@
         }
 
         .story-intro {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
         }
 
         .story-quote {
-            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
             font-weight: 700;
             margin-bottom: 2rem;
             font-style: italic;
+            color: var(--beige);
+            line-height: 1.6;
         }
 
         .story-intro p {
-            font-size: 1rem;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .story-items {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 3rem;
+            position: relative;
+        }
+        
+        /* タイムライン風の線 */
+        .story-items::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(212, 197, 185, 0.3);
         }
 
         .story-item {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .story-item::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--beige);
+            box-shadow: 0 0 0 4px rgba(212, 197, 185, 0.2);
         }
 
         .story-item h3 {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--beige);
             font-weight: 700;
         }
 
         .story-item p {
-            font-size: 1rem;
-            color: #f3f4f6;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.9;
         }
 
         /* Turning Point Section */
         .turning-point {
-            padding: 5rem 1rem;
-            background-color: var(--white);
+            padding: 7rem 1rem;
+            background: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 100%);
         }
 
         .turning-point-content {
@@ -321,33 +344,42 @@
         }
 
         .turning-point h2 {
-            font-size: clamp(1.875rem, 4vw, 2.25rem);
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
             color: var(--navy-deep);
-            margin-bottom: 2rem;
-            line-height: 1.4;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+            text-align: center;
         }
 
         .turning-point-items {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.8rem;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .turning-point-item {
-            font-size: 1rem;
-            color: #374151;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.9;
         }
 
         .turning-point-item.bold {
             font-weight: 700;
             color: var(--navy-deep);
+            font-size: 1.15rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--beige);
         }
 
         /* Features Section */
         .features {
-            padding: 5rem 1rem;
-            background-color: var(--gray-50);
+            padding: 7rem 1rem;
+            background-color: var(--gray-light);
         }
 
         .features-header {
@@ -366,130 +398,139 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .feature-card {
             background-color: var(--white);
-            border-top: 4px solid var(--navy-deep);
-            border-radius: 0.5rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--beige);
         }
 
         .feature-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
         }
 
         @media (min-width: 640px) {
-            .feature-card {
-                padding: 2.5rem;
-            }
+            .feature-card { padding: 3rem 4rem; }
         }
 
         .feature-header {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: flex-start;
         }
 
         .feature-number {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 900;
             color: var(--beige);
-            opacity: 0.2;
+            opacity: 0.3;
             flex-shrink: 0;
+            line-height: 1;
+            font-family: Arial, sans-serif;
         }
 
-        .feature-body {
-            flex: 1;
-        }
+        .feature-body { flex: 1; }
 
         .feature-card h3 {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--navy-deep);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .feature-card p {
-            font-size: 1rem;
-            color: #374151;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.9;
         }
 
         /* Vision Section */
         .vision {
             position: relative;
-            padding: 6rem 1rem;
+            padding: 8rem 1rem;
             background-color: var(--navy-deep);
             color: var(--white);
             text-align: center;
             overflow: hidden;
         }
 
+        /* 放射状のグラデーションで希望の光を表現 */
         .vision::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 384px;
-            height: 384px;
-            background-color: var(--beige);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.1;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(212, 197, 185, 0.15) 0%, rgba(10, 22, 40, 0) 70%);
             pointer-events: none;
         }
 
         .vision-content {
             position: relative;
             z-index: 10;
-            max-width: 48rem;
+            max-width: 52rem;
             margin: 0 auto;
         }
 
         .vision h2 {
-            font-size: clamp(1.875rem, 4vw, 2.25rem);
-            margin-bottom: 3rem;
-            line-height: 1.4;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: 4rem;
+            line-height: 1.5;
+            color: var(--beige);
         }
 
         .vision-items {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .vision-item {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            line-height: 1.8;
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .vision-highlight {
-            border-top: 1px solid var(--beige);
-            padding-top: 2rem;
-            margin-top: 3rem;
+            border-top: 1px solid rgba(212, 197, 185, 0.3);
+            padding-top: 3rem;
+            margin-top: 4rem;
         }
 
         .vision-highlight p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
 
         .vision-highlight p:last-child {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             font-weight: 700;
             line-height: 1.8;
+            color: var(--beige);
+            letter-spacing: 0.1em;
         }
 
         /* Flow Section */
         .flow {
-            padding: 5rem 1rem;
+            padding: 7rem 1rem;
             background-color: var(--gray-50);
         }
 
@@ -501,7 +542,6 @@
         .flow h2 {
             font-size: clamp(1.875rem, 4vw, 2.25rem);
             color: var(--navy-deep);
-            margin-bottom: 1rem;
         }
 
         .flow-items {
@@ -514,50 +554,44 @@
 
         .flow-item {
             background-color: var(--white);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (min-width: 640px) {
-            .flow-item {
-                padding: 2rem;
-            }
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .flow-item-header {
             display: flex;
             gap: 1rem;
-            align-items: flex-start;
-            margin-bottom: 1rem;
+            align-items: center;
+            margin-bottom: 1.2rem;
         }
 
         .flow-step {
-            background-color: var(--navy-deep);
-            color: var(--white);
-            padding: 0.5rem 1rem;
+            background-color: var(--beige);
+            color: var(--navy-deep);
+            padding: 0.4rem 1.2rem;
             border-radius: 9999px;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            flex-shrink: 0;
+            letter-spacing: 0.1em;
         }
 
         .flow-item h3 {
-            font-size: 1.125rem;
+            font-size: 1.15rem;
             color: var(--navy-deep);
             font-weight: 700;
-            margin-bottom: 0.5rem;
         }
 
         .flow-item p {
-            font-size: 1rem;
-            color: #374151;
+            font-size: 1.05rem;
+            color: var(--text-light);
             line-height: 1.8;
         }
 
         /* Profile Section */
         .profile {
-            padding: 5rem 1rem;
+            padding: 7rem 1rem;
             background-color: var(--white);
         }
 
@@ -575,156 +609,131 @@
             max-width: 64rem;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
 
         .profile-card {
             background-color: var(--gray-50);
-            border-left: 4px solid var(--navy-deep);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .profile-card {
-                padding: 2rem;
-            }
+            border-top: 4px solid var(--navy-deep);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         .profile-card h3 {
-            font-size: 1.125rem;
-            color: var(--beige);
+            font-size: 1.15rem;
+            color: var(--beige-dark);
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
         }
 
         .profile-card p {
-            font-size: 1rem;
-            color: #374151;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.9;
         }
 
         /* CTA Section */
         .cta {
-            padding: 6rem 1rem;
+            position: relative;
+            padding: 8rem 1rem;
             background-color: var(--navy-deep);
+            background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--white);
             text-align: center;
         }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 22, 40, 0.85);
+            z-index: 1;
+        }
 
         .cta-content {
-            max-width: 42rem;
+            position: relative;
+            z-index: 10;
+            max-width: 48rem;
             margin: 0 auto;
         }
 
         .cta h2 {
-            font-size: clamp(1.875rem, 4vw, 2.25rem);
-            margin-bottom: 2rem;
-            line-height: 1.4;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
         }
 
         .cta-text {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .cta-text p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
             margin-bottom: 1.5rem;
-            line-height: 1.8;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .cta-text p:last-child {
             font-weight: 700;
+            color: var(--beige);
+            font-size: 1.35rem;
         }
 
         .cta-button {
-            background-color: var(--beige);
+            background: linear-gradient(135deg, var(--beige) 0%, var(--beige-dark) 100%);
             color: var(--navy-deep);
             font-weight: 700;
-            padding: 1.5rem 2rem;
-            font-size: 1.125rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 4rem;
+            font-size: 1.25rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            letter-spacing: 0.1em;
         }
 
         .cta-button:hover {
-            background-color: #c9b5a8;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.05);
         }
 
         /* Footer */
         footer {
-            background-color: #f3f4f6;
-            color: #6b7280;
-            padding: 3rem 1rem;
+            background-color: var(--navy-deep);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 4rem 1rem;
             text-align: center;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        footer-content {
+        .footer-content {
             max-width: 64rem;
             margin: 0 auto;
         }
 
-        footer p {
-            margin-bottom: 1rem;
-        }
+        footer p { margin-bottom: 1.5rem; }
 
         footer a {
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.7);
             transition: color 0.3s ease;
+            margin: 0 0.5rem;
         }
 
-        footer a:hover {
-            color: var(--navy-deep);
-        }
+        footer a:hover { color: var(--beige); }
+        footer p:last-child { margin-bottom: 0; }
 
-        footer p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Responsive */
-        @media (min-width: 640px) {
-            .hero {
-                padding: 8rem 1.5rem;
-            }
-
-            .empathy,
-            .story,
-            .turning-point,
-            .features,
-            .vision,
-            .flow,
-            .profile,
-            .cta {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero {
-                padding: 8rem 2rem;
-            }
-
-            .empathy,
-            .story,
-            .turning-point,
-            .features,
-            .vision,
-            .flow,
-            .profile,
-            .cta {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-label fade-in">人生の根っこと向き合うプログラム</div>
@@ -747,7 +756,6 @@
         </div>
     </section>
 
-    <!-- Empathy Section -->
     <section class="empathy">
         <div class="empathy-card fade-in">
             <h2>こんな思いを抱いたことはありませんか？</h2>
@@ -762,16 +770,15 @@
                 <p class="fade-in">これらの思いは、決して弱さではありません。</p>
                 <p class="fade-in">それは、あなたの心が「本当の自分」を求めている証です。</p>
                 <p class="fade-in">多くの人が、この問いを避けて生きています。</p>
-                <p class="fade-in">でも、あなたはここにいます。その勇気こそが、人生を変える第一歩です。</p>
+                <p class="fade-in">でも、あなたはここにいます。<br>その勇気こそが、人生を変える第一歩です。</p>
             </div>
         </div>
     </section>
 
-    <!-- Story Section -->
     <section class="story">
         <div class="story-content">
             <div class="story-intro fade-in">
-                <p class="story-quote">「自分には、何もできない。存在する価値もないんじゃないか。」</p>
+                <p class="story-quote">「自分には、何もできない。<br>存在する価値もないんじゃないか。」</p>
                 <p>かつて、この講師も同じ思いを抱いていました。</p>
             </div>
             <div class="story-items">
@@ -795,7 +802,6 @@
         </div>
     </section>
 
-    <!-- Turning Point Section -->
     <section class="turning-point">
         <div class="turning-point-content">
             <h2 class="fade-in">その時、ある気づきが訪れました。</h2>
@@ -811,7 +817,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
         <div class="features-header">
             <h2 class="fade-in">Rootsプログラムの3つの強み</h2>
@@ -847,10 +852,9 @@
         </div>
     </section>
 
-    <!-- Vision Section -->
     <section class="vision">
         <div class="vision-content">
-            <h2 class="fade-in">このプログラムを受けたあなたは、どんな姿になるのか。</h2>
+            <h2 class="fade-in">このプログラムを受けたあなたは、<br>どんな姿になるのか。</h2>
             <div class="vision-items">
                 <p class="vision-item fade-in">自分の人生に誇りを持ち、「自分として生まれてきて、本当によかった」と心から思えている状態。</p>
                 <p class="vision-item fade-in">それは、単なる自信ではありません。</p>
@@ -861,12 +865,11 @@
             </div>
             <div class="vision-highlight fade-in">
                 <p>あなたは、その変化の一部になります。</p>
-                <p>あなたの人生は、単なる個人の成功ではなく、日本の未来を作る、大切な一部なのです。</p>
+                <p>あなたの人生は、単なる個人の成功ではなく、<br>日本の未来を作る、大切な一部なのです。</p>
             </div>
         </div>
     </section>
 
-    <!-- Flow Section -->
     <section class="flow">
         <div class="flow-header">
             <h2 class="fade-in">Rootsプログラムへの参加方法</h2>
@@ -875,35 +878,34 @@
             <div class="flow-item fade-in">
                 <div class="flow-item-header">
                     <div class="flow-step">STEP 1</div>
+                    <h3>興味がある方から問い合わせいただく</h3>
                 </div>
-                <h3>興味がある方から問い合わせいただく</h3>
                 <p>まずは、お気軽にお問い合わせください。あなたの想いや質問をお聞きします。</p>
             </div>
             <div class="flow-item fade-in">
                 <div class="flow-item-header">
                     <div class="flow-step">STEP 2</div>
+                    <h3>翼さん/瑞季さんと面談</h3>
                 </div>
-                <h3>翼さん/瑞季さんと面談</h3>
                 <p>実際にお会いして、あなたの人生について、深くお話しします。この面談を通じて、あなたが本当に必要なサポートが何かを、一緒に見つけていきます。</p>
             </div>
             <div class="flow-item fade-in">
                 <div class="flow-item-header">
                     <div class="flow-step">STEP 3</div>
+                    <h3>プログラムへのご参加</h3>
                 </div>
-                <h3>プログラムへのご参加</h3>
                 <p>あなたのペースで、自分のルーツと向き合う旅を始めます。</p>
             </div>
             <div class="flow-item fade-in">
                 <div class="flow-item-header">
                     <div class="flow-step">STEP 4</div>
+                    <h3>志を語り合う仲間との出会い</h3>
                 </div>
-                <h3>志を語り合う仲間との出会い</h3>
                 <p>同じ志を持つ仲間と出会い、一緒に成長していきます。</p>
             </div>
         </div>
     </section>
 
-    <!-- Profile Section -->
     <section class="profile">
         <div class="profile-header">
             <h2 class="fade-in">Roots講師プロフィール</h2>
@@ -924,10 +926,9 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta">
         <div class="cta-content">
-            <h2 class="fade-in">あなたの人生の根っこと向き合う時が来ました。</h2>
+            <h2 class="fade-in">あなたの人生の根っこと向き合う<br>時が来ました。</h2>
             <div class="cta-text fade-in">
                 <p>今、問い合わせをしてください。</p>
                 <p>その一歩が、あなたの人生を変えます。</p>
@@ -937,12 +938,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <p>
                 <a href="#">特定商取引法に基づく表記</a>
-                {' | '}
+                |
                 <a href="#">プライバシーポリシー</a>
             </p>
             <p>運営：Rootsプログラム事務局</p>
