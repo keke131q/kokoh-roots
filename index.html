@@ -19,6 +19,7 @@
   --navy-light: #152c4a;
   --white: #fafafa;
   --gold: #c5a570;         /* 静かな情熱を表すシャンパンゴールド */
+  --gold-light: #dfc89d;
   --beige-dark: #b8a594;
   --beige-light: #fdf6e3;
   --text-main: #1a2530;
@@ -36,7 +37,8 @@ body {
   line-height: 1.8; 
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
-  word-break: normal; 
+  /* 日本語の文節での美しい自動改行（対応ブラウザ向け）とフォールバック */
+  word-break: auto-phrase;
   overflow-wrap: break-word;
 }
 
@@ -67,11 +69,13 @@ img { max-width: 100%; height: auto; display: block; }
   transform: translateY(0); 
 }
 
+/* ボタンの光るアニメーション */
 @keyframes pulse-soft {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 197, 185, 0.4); }
-  50% { box-shadow: 0 0 0 15px rgba(212, 197, 185, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(197, 165, 112, 0.6); }
+  70% { box-shadow: 0 0 0 25px rgba(197, 165, 112, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(197, 165, 112, 0); }
 }
-.animate-pulse { animation: pulse-soft 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-pulse { animation: pulse-soft 2.5s infinite; }
 
 /* --- 2. HERO SECTION --- */
 .hero {
@@ -80,7 +84,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; 
   align-items: center; 
   justify-content: center;
-  padding: 8rem 1rem 12rem;
+  padding: 8rem 1.5rem 12rem;
   background-color: var(--navy-deep);
   background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; 
@@ -95,26 +99,26 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .hero-content { position: relative; z-index: 10; max-width: 50rem; text-align: center; }
 .hero-label {
-  display: inline-block; margin-bottom: 2.5rem;
-  padding: 0.6rem 1.8rem;
+  display: inline-block; margin-bottom: 2rem;
+  padding: 0.6rem 1.5rem;
   border: 1px solid var(--gold); border-radius: 9999px;
-  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem); font-weight: 700; letter-spacing: 0.15em;
   color: var(--gold); background: rgba(10, 22, 40, 0.4); backdrop-filter: blur(4px);
 }
 .hero h1 {
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-size: clamp(1.8rem, 7vw, 3.8rem);
   color: var(--white); margin-bottom: 2.5rem;
   line-height: 1.4; text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
-.hero-subtitle { font-size: clamp(1rem, 2.2vw, 1.15rem); color: rgba(255, 255, 255, 0.85); margin-bottom: 3.5rem; }
-.hero-text { font-size: clamp(1rem, 2vw, 1.125rem); color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem; }
+.hero-subtitle { font-size: clamp(0.95rem, 3.5vw, 1.15rem); color: rgba(255, 255, 255, 0.85); margin-bottom: 3.5rem; }
+.hero-text { font-size: clamp(0.9rem, 3vw, 1.1rem); color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem; }
 
 /* --- 3. EMPATHY SECTION --- */
 .empathy {
   padding: 0 1rem 5rem;
   background-color: var(--gray-50);
   position: relative; z-index: 20;
-  margin-top: -6rem; /* Heroに重ねる */
+  margin-top: -6rem;
 }
 .empathy-card {
   max-width: 50rem; margin: 0 auto;
@@ -122,10 +126,10 @@ img { max-width: 100%; height: auto; display: block; }
   border-top: 6px solid var(--gold); border-radius: 8px;
   padding: 4rem 2rem; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
-@media (max-width: 768px) { .empathy-card { padding: 3rem 1rem; } }
+@media (max-width: 768px) { .empathy-card { padding: 3rem 1.2rem; } }
 
 .empathy h2 {
-  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
   color: var(--navy-deep); margin-bottom: 3rem;
   text-align: center; line-height: 1.5;
 }
@@ -136,7 +140,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 4px; font-size: 1.05rem; transition: transform 0.3s ease;
 }
 @media (max-width: 768px) { 
-  .empathy-item { font-size: 0.9rem; padding: 0.8rem 1rem; letter-spacing: 0; } 
+  .empathy-item { font-size: 0.95rem; padding: 0.8rem 1rem; } 
 }
 .empathy-item:hover { transform: translateX(5px); }
 .empathy-item span:first-child {
@@ -144,13 +148,13 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- 4. FACT SECTION --- */
-.fact-section { padding: 4rem 1rem 6rem; background-color: var(--gray-50); }
+.fact-section { padding: 4rem 1.5rem 6rem; background-color: var(--gray-50); }
 .fact-header { text-align: center; margin-bottom: 4rem; max-width: 48rem; margin-left: auto; margin-right: auto; }
-.fact-header h2 { font-size: clamp(1.4rem, 3.5vw, 1.8rem); color: var(--navy-deep); line-height: 1.7; }
+.fact-header h2 { font-size: clamp(1.3rem, 4.5vw, 1.8rem); color: var(--navy-deep); line-height: 1.7; margin-bottom: 1.5rem;}
 
 .fact-grid {
   max-width: 68rem; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
 }
 .fact-card {
@@ -164,29 +168,29 @@ img { max-width: 100%; height: auto; display: block; }
 .fact-keyword {
   display: inline-block; background-color: var(--navy-deep); color: var(--white);
   padding: 0.35rem 1.2rem; border-radius: 9999px;
-  font-size: 0.85rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 0.05em;
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem); font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 0.05em;
 }
-.fact-card h3 { font-size: 1.2rem; color: var(--navy-deep); margin-bottom: 1.2rem; }
-.fact-card p { font-size: 0.95rem; color: var(--text-main); line-height: 1.8; text-align: left; }
+.fact-card h3 { font-size: clamp(1.1rem, 3vw, 1.2rem); color: var(--navy-deep); margin-bottom: 1.2rem; }
+.fact-card p { font-size: clamp(0.9rem, 2.5vw, 0.95rem); color: var(--text-main); line-height: 1.8; text-align: left; }
 
 .fact-summary {
   max-width: 50rem; margin: 5rem auto 0;
-  text-align: center; padding: 2.5rem;
+  text-align: center; padding: 2.5rem 1.5rem;
   background: rgba(197, 165, 112, 0.1);
   border: 1px solid var(--gold); border-radius: 8px;
 }
-.fact-summary p { font-weight: 700; font-size: clamp(1rem, 2.5vw, 1.15rem); line-height: 1.8; color: var(--navy-deep); }
+.fact-summary p { font-weight: 700; font-size: clamp(0.95rem, 3.5vw, 1.15rem); line-height: 1.8; color: var(--navy-deep); }
 
 /* --- 5. STORY SECTION --- */
 .story {
-  padding: 8rem 1rem;
+  padding: 8rem 1.5rem;
   background: linear-gradient(135deg, #050b14 0%, var(--navy-deep) 100%);
   color: var(--white);
 }
 .story-content { max-width: 48rem; margin: 0 auto; }
 .story-intro { margin-bottom: 5rem; text-align: center; }
 .story-quote {
-  font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
   font-weight: 700; font-style: italic;
   color: var(--gold); margin-bottom: 2.5rem; line-height: 1.6;
 }
@@ -198,51 +202,58 @@ img { max-width: 100%; height: auto; display: block; }
   content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 1px;
   background: rgba(212, 197, 185, 0.3);
 }
+@media (max-width: 768px) {
+  .story-items::before { left: 11px; }
+}
+
 .story-item { position: relative; padding-left: 3.5rem; }
 .story-item::before {
   content: ''; position: absolute; left: 10px; top: 10px; width: 12px; height: 12px;
   border-radius: 50%; background: var(--gold);
   box-shadow: 0 0 0 5px rgba(197, 165, 112, 0.2);
 }
-.story-item h3 { font-size: 1.3rem; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
-.story-item p { font-size: 1.05rem; color: rgba(255, 255, 255, 0.75); line-height: 1.9; }
+@media (max-width: 768px) {
+  .story-item { padding-left: 2.8rem; }
+  .story-item::before { left: 6px; top: 8px; width: 10px; height: 10px; }
+}
 
-/* --- 6. TURNING POINT (温かみ・明るい画像) --- */
-.turning-point { padding: 8rem 1rem; background-color: var(--white); }
+.story-item h3 { font-size: clamp(1.15rem, 3.5vw, 1.3rem); color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
+.story-item p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: rgba(255, 255, 255, 0.75); line-height: 1.9; }
+
+/* --- 6. TURNING POINT --- */
+.turning-point { padding: 8rem 1.5rem; background-color: var(--white); }
 .turning-point-content { max-width: 70rem; margin: 0 auto; }
 .turning-point-layout {
-  display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center;
+  display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
 }
-@media (min-width: 992px) { .turning-point-layout { grid-template-columns: 1fr 1.2fr; } }
+@media (min-width: 992px) { .turning-point-layout { grid-template-columns: 1fr 1.2fr; gap: 4rem; } }
 
 .tp-image-wrapper {
   border-radius: 12px; overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.08); height: 500px;
 }
-/* 温かみのある明るい木漏れ日の画像 */
+@media (max-width: 768px) { .tp-image-wrapper { height: 350px; } }
 .tp-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
 .turning-point-text h2 {
-  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
   color: var(--navy-deep); margin-bottom: 2.5rem; line-height: 1.5;
 }
-.turning-point-items { display: flex; flex-direction: column; gap: 1.8rem; }
-.turning-point-item { font-size: 1.05rem; color: var(--text-main); line-height: 1.9; }
+.turning-point-items { display: flex; flex-direction: column; gap: 1.5rem; }
+.turning-point-item { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); line-height: 1.9; }
 .turning-point-item.bold {
-  font-weight: 700; font-size: 1.2rem; color: var(--navy-deep);
-  border-left: 4px solid var(--gold); padding-left: 1.5rem;
+  font-weight: 700; font-size: clamp(1.05rem, 3.5vw, 1.2rem); color: var(--navy-deep);
+  border-left: 4px solid var(--gold); padding-left: 1.2rem;
 }
 
-/* --- 7. MISSION SECTION (静かな情熱と深い安心感) --- */
+/* --- 7. MISSION SECTION --- */
 .mission {
   position: relative; padding: 10rem 1.5rem;
   background-color: var(--navy-deep);
-  /* 温かい光と根っこが繋がるイメージ */
   background-image: url('https://images.unsplash.com/photo-1518218174577-d779f648d880?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; background-position: center; background-attachment: fixed;
   color: var(--white); text-align: center;
 }
-/* ネイビーからゴールドへのグラデーションオーバーレイ */
 .mission::before {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: linear-gradient(to bottom, rgba(10, 22, 40, 0.9) 0%, rgba(197, 165, 112, 0.3) 100%);
@@ -250,27 +261,27 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .mission-content { position: relative; z-index: 10; max-width: 55rem; margin: 0 auto; }
 .mission-label { color: var(--gold); font-weight: 700; margin-bottom: 2.5rem; display: block; letter-spacing: 0.15em; }
-.mission h2 { font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.6; margin-bottom: 3rem; }
-.mission h2 span { color: var(--gold); text-decoration: underline; text-underline-offset: 10px; }
+.mission h2 { font-size: clamp(1.6rem, 6vw, 3rem); line-height: 1.6; margin-bottom: 3rem; }
+.mission h2 span { color: var(--gold); text-decoration: underline; text-underline-offset: 8px; }
 .mission p {
-  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
   line-height: 2; color: rgba(255, 255, 255, 0.95); margin-bottom: 1.5rem;
 }
 
 .mission-highlight {
-  margin-top: 4rem; padding: 2.5rem 2rem;
+  margin-top: 4rem; padding: 2rem 1.5rem;
   background: rgba(10, 22, 40, 0.6); backdrop-filter: blur(8px);
   border: 1px solid rgba(197, 165, 112, 0.3); border-radius: 12px;
-  display: inline-block;
+  display: inline-block; width: 100%; max-width: 600px;
 }
-.mission-highlight p { font-weight: 700; font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--gold); }
+.mission-highlight p { font-weight: 700; font-size: clamp(1rem, 3.5vw, 1.4rem); color: var(--gold); margin: 0;}
 
-/* --- 8. FEATURES SECTION (スマホ表示最適化・横スクロール) --- */
-.features { padding: 8rem 1rem; background-color: var(--gray-light); }
-.features-header { text-align: center; margin-bottom: 5rem; }
-.features h2 { font-size: clamp(1.8rem, 4vw, 2.3rem); color: var(--navy-deep); }
+/* --- 8. FEATURES SECTION --- */
+.features { padding: 8rem 0; background-color: var(--gray-light); }
+.features-header { text-align: center; margin-bottom: 4rem; padding: 0 1.5rem; }
+.features h2 { font-size: clamp(1.6rem, 5vw, 2.3rem); color: var(--navy-deep); }
 
-.features-grid { max-width: 65rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+.features-grid { max-width: 65rem; margin: 0 auto; display: grid; gap: 2.5rem; padding: 0 1.5rem; }
 .feature-card {
   background: var(--white); border-radius: 12px;
   padding: 3rem 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
@@ -283,40 +294,36 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .feature-number { font-size: 4rem; font-weight: 900; color: var(--gold); opacity: 0.2; line-height: 1; flex-shrink: 0; }
 .feature-body { flex: 1; }
-.feature-body h3 { font-size: 1.4rem; color: var(--navy-deep); margin-bottom: 1.5rem; line-height: 1.5; }
-.feature-body p { color: var(--text-light); line-height: 2; font-size: 1.05rem; }
+.feature-body h3 { font-size: clamp(1.2rem, 3.5vw, 1.4rem); color: var(--navy-deep); margin-bottom: 1.2rem; line-height: 1.5; }
+.feature-body p { color: var(--text-light); line-height: 2; font-size: clamp(0.95rem, 3vw, 1.05rem); }
 
-/* スマホ表示修正：3つの強みを横スクロールへ */
 @media (max-width: 768px) {
   .features-grid {
-    display: flex; flex-wrap: nowrap; overflow-x: auto; /* 横スクロール化 */
+    display: flex; flex-wrap: nowrap; overflow-x: auto; 
     gap: 1.5rem; padding: 1rem 1.5rem 3rem;
     scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-    /* スクロールバーを見えにくくする */
     scrollbar-width: none;
   }
   .features-grid::-webkit-scrollbar { display: none; }
   
   .feature-card {
-    width: 85vw; flex-shrink: 0; scroll-snap-align: center; /* 1枚ずつ表示 */
+    width: 85vw; flex-shrink: 0; scroll-snap-align: center; 
     padding: 2.5rem 1.5rem; flex-direction: column; gap: 1rem;
     text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.08);
   }
-  .feature-card::after { width: 100%; height: 6px; left: 0; top: 0; } /* 横線を上に */
+  .feature-card::after { width: 100%; height: 6px; left: 0; top: 0; } 
   
   .feature-number { font-size: 3rem; margin-bottom: 0.5rem; text-align: center; display: block; width: 100%; }
-  .feature-body h3 { font-size: 1.15rem; margin-bottom: 1rem; }
-  .feature-body p { font-size: 0.95rem; line-height: 1.8; text-align: justify; }
 }
 
 /* --- 9. VISION & FLOW SECTION --- */
-.vision { padding: 8rem 1rem; background: var(--navy-deep); color: var(--white); text-align: center; }
-.vision h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); margin-bottom: 4rem; line-height: 1.6; color: var(--gold); }
+.vision { padding: 8rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
+.vision h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); margin-bottom: 4rem; line-height: 1.6; color: var(--gold); }
 .vision-items { display: flex; flex-direction: column; gap: 2rem; max-width: 50rem; margin: 0 auto; text-align: center; }
-.vision-item { font-size: 1.1rem; line-height: 2; color: rgba(255,255,255,0.9); }
+.vision-item { font-size: clamp(0.95rem, 3vw, 1.1rem); line-height: 2; color: rgba(255,255,255,0.9); }
 
 .flow { padding: 7rem 1.5rem; background-color: var(--gray-light); }
-.flow h2 { font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--navy-deep); text-align: center; margin-bottom: 4rem; }
+.flow h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--navy-deep); text-align: center; margin-bottom: 4rem; }
 .flow-items { max-width: 45rem; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
 .flow-item {
   background-color: var(--white); padding: 2rem; border-radius: 8px;
@@ -329,8 +336,8 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0.4rem 1.2rem; border-radius: 9999px;
   font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; flex-shrink: 0;
 }
-.flow-item h3 { font-size: 1.15rem; color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
-.flow-item p { font-size: 1rem; color: var(--text-light); line-height: 1.8; }
+.flow-item h3 { font-size: clamp(1.1rem, 3.5vw, 1.15rem); color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
+.flow-item p { font-size: clamp(0.9rem, 3vw, 1rem); color: var(--text-light); line-height: 1.8; }
 
 /* --- 10. PROFILE SECTION --- */
 .profile { padding: 8rem 1.5rem; background-color: var(--white); }
@@ -339,7 +346,7 @@ img { max-width: 100%; height: auto; display: block; }
   background-color: var(--gray-50); padding: 4rem;
   border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.04);
 }
-.profile-header h2 { text-align: center; font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--navy-deep); margin-bottom: 3rem; }
+.profile-header h2 { text-align: center; font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--navy-deep); margin-bottom: 3rem; }
 
 .profile-top { display: flex; flex-direction: row; align-items: center; gap: 3.5rem; margin-bottom: 4rem; }
 @media (max-width: 992px) {
@@ -347,7 +354,6 @@ img { max-width: 100%; height: auto; display: block; }
   .profile-box { padding: 3rem 1.5rem; }
 }
 
-/* 講師画像枠 */
 .profile-image-frame {
   width: 250px; height: 250px; flex-shrink: 0;
   border-radius: 12px; background-color: var(--gray-light);
@@ -357,48 +363,84 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; align-items: center; justify-content: center;
   color: var(--text-light); font-size: 0.9rem;
 }
-.profile-image-frame img {
-  width: 100%; height: 100%; object-fit: cover;
-  position: absolute; top: 0; left: 0;
-}
+.profile-image-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
 
 .profile-info { flex: 1; }
-.profile-name { font-size: 2rem; color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
+.profile-name { font-size: clamp(1.6rem, 5vw, 2rem); color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
 .profile-title {
-  display: block; font-size: 1rem; color: var(--beige-dark);
-  font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;
+  display: block; font-size: clamp(0.9rem, 3vw, 1rem); color: var(--beige-dark);
+  font-weight: 700; margin-bottom: 1.5rem; line-height: 1.6;
 }
-.profile-desc { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; }
+.profile-desc p { font-size: clamp(0.95rem, 3vw, 1.05rem); color: var(--text-main); line-height: 1.8; text-align: left; }
 
 .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 .profile-card {
   background-color: var(--white); border-top: 4px solid var(--navy-light);
-  border-radius: 8px; padding: 2.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 .profile-card h3 {
-  font-size: 1.15rem; color: var(--beige-dark); font-weight: 700;
+  font-size: clamp(1.05rem, 3vw, 1.15rem); color: var(--beige-dark); font-weight: 700;
   margin-bottom: 1.2rem; padding-bottom: 0.8rem;
   border-bottom: 1px dashed rgba(0,0,0,0.1);
 }
-.profile-card p { font-size: 1rem; color: var(--text-main); line-height: 1.9; }
+.profile-card p { font-size: clamp(0.9rem, 2.5vw, 1rem); color: var(--text-main); line-height: 1.9; }
 
 /* --- 11. CTA & FOOTER --- */
 .cta { padding: 8rem 1.5rem; background: var(--navy-deep); text-align: center; color: var(--white); }
-.cta-content h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.5; margin-bottom: 3.5rem; }
-.cta-btn {
-  display: inline-block; padding: 1.5rem 4rem;
-  background: linear-gradient(135deg, var(--gold) 0%, #b08d50 100%);
-  color: var(--navy-deep); font-weight: 700; font-size: 1.3rem; border-radius: 9999px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;
-  letter-spacing: 0.1em; text-decoration: none;
+.cta-content { max-width: 48rem; margin: 0 auto; }
+.cta-content h2 { font-size: clamp(1.6rem, 5vw, 2.5rem); line-height: 1.6; margin-bottom: 3.5rem; }
+.cta-text p { font-size: clamp(0.95rem, 3.5vw, 1.25rem); color: rgba(255,255,255,0.9); margin-bottom: 1rem; }
+
+/* 問い合わせボタンの大幅な強調とUI/UX最適化 */
+.cta-button-wrapper {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 }
-.cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(197, 165, 112, 0.4); filter: brightness(1.1); }
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4rem 4rem; /* 大きく確保 */
+  background: linear-gradient(135deg, var(--gold) 0%, #b08d50 100%);
+  color: var(--navy-deep); 
+  font-weight: 900; /* 極太に */
+  font-size: clamp(1.2rem, 5vw, 1.6rem); /* 文字も大きく */
+  border-radius: 9999px; 
+  box-shadow: 0 10px 30px rgba(197, 165, 112, 0.4); 
+  transition: all 0.3s ease;
+  letter-spacing: 0.1em; 
+  text-decoration: none;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .cta-button {
+    width: 90%; /* スマホの横幅に合わせて押しやすく */
+    max-width: 400px;
+    padding: 1.2rem 2rem;
+  }
+}
+.cta-button:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 15px 40px rgba(197, 165, 112, 0.6); 
+  filter: brightness(1.1); 
+}
+.cta-icon {
+  margin-left: 12px;
+  font-size: 0.9em;
+}
 
 footer {
   padding: 4rem 1.5rem; background-color: #050b14;
   color: rgba(255,255,255,0.4); text-align: center; font-size: 0.8rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+.footer-content { max-width: 64rem; margin: 0 auto; }
+footer p { margin-bottom: 1.5rem; }
+footer a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s ease; margin: 0 0.5rem; }
+footer a:hover { color: var(--gold); }
+footer p:last-child { margin-bottom: 0; }
+
     </style>
 </head>
 <body>
@@ -507,7 +549,7 @@ footer {
                 <div class="turning-point-text">
                     <div class="turning-point-items">
                         <p class="turning-point-item fade-in"><strong>ご先祖様と家系について、深く知ったのです。</strong></p>
-                        <p class="turning-point-item fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれていたかを知りました。</p>
+                        <p class="turning-point-item fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
                         <p class="turning-point-item fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
                         <p class="turning-point-item bold fade-in">「自分は、一人で生きているんじゃない。<br>幾千の命が、自分を生かしてくれている。」</p>
                         <p class="turning-point-item fade-in">その瞬間、命の尊さへの理解が、深い「安心感」となり、自分の人生に誇りが戻りました。</p>
@@ -676,9 +718,15 @@ footer {
             <div class="cta-text fade-in">
                 <p>今、問い合わせをしてください。</p>
                 <p>その一歩が、あなたの人生を変えます。</p>
-                <p>その一歩が、日本の未来を変えます。</p>
+                <p style="color: var(--gold); margin-top: 1.5rem;">その一歩が、日本の未来を変えます。</p>
             </div>
-            <a href="#" class="cta-button animate-pulse fade-in">問い合わせる</a>
+            
+            <div class="cta-button-wrapper fade-in">
+                <a href="https://kokoh.co.jp/application/" class="cta-button animate-pulse" target="_blank" rel="noopener noreferrer">
+                    問い合わせる
+                    <i class="fa-solid fa-chevron-right cta-icon"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -696,9 +744,6 @@ footer {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // JSが有効な場合のみフェードインさせるための安全策
-            // （スタイルシートで最初から隠している場合への対応）
-            
             const observerOptions = {
                 threshold: 0.15,
                 rootMargin: '0px 0px -50px 0px'
@@ -708,7 +753,6 @@ footer {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // 1度表示されたら監視を外すことでパフォーマンス向上
                         observer.unobserve(entry.target);
                     }
                 });
@@ -716,17 +760,14 @@ footer {
 
             const fadeElements = document.querySelectorAll('.fade-in');
             
-            // 要素が存在しない場合のエラー回避
             if(fadeElements.length > 0) {
                 fadeElements.forEach((element) => {
                     observer.observe(element);
                 });
             } else {
-                // セーフフォールバック
                 document.body.style.opacity = 1;
             }
             
-            // もしJSの実行遅延などで画面が白くなるのを防ぐためのフォールバック処理
             setTimeout(() => {
                 fadeElements.forEach((element) => {
                     if (!element.classList.contains('visible')) {
@@ -734,16 +775,13 @@ footer {
                         element.style.transform = 'translateY(0)';
                     }
                 });
-            }, 3000); // 3秒経っても表示されなければ強制表示
+            }, 3000);
         });
     </script>
     
     <noscript>
         <style>
-            .fade-in {
-                opacity: 1 !important;
-                transform: none !important;
-            }
+            .fade-in { opacity: 1 !important; transform: none !important; }
         </style>
     </noscript>
 </body>
