@@ -40,6 +40,22 @@
             line-height: 1.8;
             letter-spacing: 0.05em;
             -webkit-font-smoothing: antialiased;
+            /* スマホでの変な改行を防ぐ基本設定 */
+            word-break: normal;
+            overflow-wrap: break-word;
+        }
+
+        /* 文節でまとめて折り返すためのユーティリティ */
+        .ib {
+            display: inline-block;
+        }
+
+        /* レスポンシブ改行制御 */
+        .pc-br { display: block; }
+        .sp-br { display: none; }
+        @media (max-width: 768px) {
+            .pc-br { display: none; }
+            .sp-br { display: block; }
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -175,7 +191,7 @@
             background-color: var(--white);
             border-top: 5px solid var(--beige);
             border-radius: 8px;
-            padding: 3rem 2rem;
+            padding: 3rem 1.5rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
@@ -184,7 +200,7 @@
         }
 
         .empathy h2 {
-            font-size: clamp(1.5rem, 4vw, 1.875rem);
+            font-size: clamp(1.4rem, 4vw, 1.875rem);
             color: var(--navy-deep);
             margin-bottom: 3rem;
             text-align: center;
@@ -195,20 +211,27 @@
             list-style: none;
             margin-bottom: 0;
             display: grid;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .empathy-item {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             font-size: 1.05rem;
             color: var(--text-main);
-            line-height: 1.8;
+            line-height: 1.6;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             background: var(--gray-light);
             border-radius: 4px;
             transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .empathy-item {
+                font-size: 0.95rem; /* スマホで1行に収まるように微調整 */
+                padding: 0.8rem;
+            }
         }
         
         .empathy-item:hover { transform: translateX(5px); }
@@ -220,7 +243,7 @@
             flex-shrink: 0;
         }
 
-        /* 新規追加：根拠・データ（Fact）セクション */
+        /* Fact (根拠) Section */
         .fact-section {
             padding: 2rem 1rem 6rem;
             background-color: var(--gray-50);
@@ -238,7 +261,7 @@
             font-size: clamp(1.4rem, 3.5vw, 1.8rem);
             color: var(--navy-deep);
             margin-bottom: 1.5rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .fact-header p {
@@ -315,6 +338,7 @@
             color: var(--navy-deep);
             font-size: 1.1rem;
             margin: 0;
+            line-height: 1.8;
         }
 
         /* Story Section */
@@ -354,7 +378,7 @@
         .story-item h3 { font-size: 1.25rem; color: var(--beige); font-weight: 700; }
         .story-item p { font-size: 1.05rem; color: rgba(255, 255, 255, 0.75); line-height: 1.9; }
 
-        /* Turning Point Section (Image Added) */
+        /* Turning Point Section (安心感のある画像へ変更) */
         .turning-point {
             padding: 7rem 1rem;
             background: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 100%);
@@ -409,12 +433,13 @@
             font-weight: 700; color: var(--navy-deep); font-size: 1.15rem; padding-left: 1rem; border-left: 3px solid var(--beige);
         }
 
-        /* Mission Section (コアメッセージ) */
+        /* Mission Section (静かな情熱と深い安心感) */
         .mission {
             position: relative;
             padding: 8rem 1rem;
             background-color: var(--navy-deep);
-            background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2000&auto=format&fit=crop'); /* 根っこのイメージ */
+            /* 深く、しかし温かみのある光が差し込む静かな山々の風景 */
+            background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -422,11 +447,12 @@
             text-align: center;
         }
 
+        /* ネイビーとゴールドのグラデーションで、安心感と情熱の同居を表現 */
         .mission::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 22, 40, 0.85);
+            background: linear-gradient(to bottom, rgba(10, 22, 40, 0.95) 0%, rgba(197, 165, 112, 0.4) 100%);
             z-index: 1;
         }
 
@@ -463,17 +489,18 @@
         .mission p {
             font-size: clamp(1.05rem, 2vw, 1.2rem);
             line-height: 2;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 1.5rem;
         }
 
         .mission-highlight {
             margin-top: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            background: rgba(10, 22, 40, 0.6);
             border: 1px solid rgba(212, 197, 185, 0.3);
             border-radius: 8px;
             display: inline-block;
+            backdrop-filter: blur(8px);
         }
 
         .mission-highlight p {
@@ -518,7 +545,7 @@
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 197, 185, 0.15) 0%, rgba(10, 22, 40, 0) 70%); pointer-events: none;
         }
         .vision-content { position: relative; z-index: 10; max-width: 52rem; margin: 0 auto; }
-        .vision h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-bottom: 4rem; line-height: 1.5; color: var(--beige); }
+        .vision h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-bottom: 4rem; line-height: 1.6; color: var(--beige); }
         .vision-items { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 4rem; }
         .vision-item { font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.9; color: rgba(255, 255, 255, 0.9); }
         .vision-highlight { border-top: 1px solid rgba(212, 197, 185, 0.3); padding-top: 3rem; margin-top: 4rem; }
@@ -566,7 +593,7 @@
 
         .profile-info { flex: 1; }
         .profile-name { font-size: 1.8rem; color: var(--navy-deep); font-weight: 700; margin-bottom: 0.5rem; }
-        .profile-title { font-size: 1rem; color: var(--beige-dark); font-weight: 700; margin-bottom: 1.5rem; }
+        .profile-title { font-size: 1rem; color: var(--beige-dark); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;}
         .profile-desc { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; }
 
         .profile-grid {
@@ -611,7 +638,7 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-label fade-in">人生の根っこと向き合うプログラム</div>
-            <h1 class="fade-in">あなたの人生に、誇りはありますか？</h1>
+            <h1 class="fade-in">あなたの人生に、<br>誇りはありますか？</h1>
             <p class="hero-subtitle fade-in">
                 仕事は順調。給料も悪くない。<br>
                 でも、心の奥底から「自分として生まれてきて、本当によかった」<br>
@@ -619,8 +646,8 @@
             </p>
             <p class="hero-text fade-in">多くの人は、その問いに答えられません。</p>
             <p class="hero-text fade-in">
-                それは、あなたが弱いからではありません。<br>
-                あなたが足りないからではありません。
+                <span class="ib">それは、あなたが弱いからではありません。</span><br>
+                <span class="ib">あなたが足りないからではありません。</span>
             </p>
             <p class="hero-text fade-in">ただ、まだ気づいていないだけです。</p>
         </div>
@@ -631,7 +658,7 @@
             <h2>こんな思いを抱いたことはありませんか？</h2>
             <ul class="empathy-list">
                 <li class="empathy-item fade-in"><span>✓</span><span>自分に自信が持てない</span></li>
-                <li class="empathy-item fade-in"><span>✓</span><span>何かが足りない感覚がある</span></li>
+                <li class="empathy-item fade-in"><span>✓</span><span>何かが足りないと感じる</span></li>
                 <li class="empathy-item fade-in"><span>✓</span><span>自分の人生を見つめ直したい</span></li>
                 <li class="empathy-item fade-in"><span>✓</span><span>志を明確にしたい</span></li>
                 <li class="empathy-item fade-in"><span>✓</span><span>自分のルーツを知りたい</span></li>
@@ -641,8 +668,14 @@
 
     <section class="fact-section">
         <div class="fact-header fade-in">
-            <h2>そのモヤモヤは、あなたの弱さではない。<br>社会構造が引き起こす「3つの必然」</h2>
-            <p>なぜ今、あなたは「自分の存在価値」を見つめ直そうとしているのか。<br>心理学やデータから見ても、それは極めて正常な反応です。</p>
+            <h2>
+                <span class="ib">そのモヤモヤは、あなたの弱さではない。</span><br>
+                <span class="ib">社会構造が引き起こす「3つの必然」</span>
+            </h2>
+            <p>
+                <span class="ib">なぜ今、あなたは「自分の存在価値」を見つめ直そうとしているのか。</span><br>
+                <span class="ib">心理学やデータから見ても、それは極めて正常な反応です。</span>
+            </p>
         </div>
         
         <div class="fact-grid">
@@ -650,7 +683,7 @@
                 <div class="fact-icon">
                     <i class="fa-solid fa-hourglass-half"></i>
                 </div>
-                <div class="fact-keyword">年齢：25〜35歳の壁</div>
+                <div class="fact-keyword">25〜35歳の壁</div>
                 <h3>クォーターライフ・クライシス</h3>
                 <p>20代後半から30代前半は、仕事の要領を掴む一方で「キャリアの踊り場」を迎え、「自分の人生はこのままでいいのか」と人生の意義を見失いやすい時期です。これは心理学でも立証された正常な葛藤です。</p>
             </div>
@@ -659,7 +692,7 @@
                 <div class="fact-icon">
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
-                <div class="fact-keyword">職業：ホワイトワーカー</div>
+                <div class="fact-keyword">ホワイトワーカーの宿命</div>
                 <h3>成果の「手触り感」の喪失</h3>
                 <p>1日中PCに向かい、データを処理する日々。自分の仕事が「誰の役に立っているか」という物理的な実感が得にくく、社会の歯車として労働のリアリティと誇りを喪失しやすい構造に置かれています。</p>
             </div>
@@ -668,14 +701,18 @@
                 <div class="fact-icon">
                     <i class="fa-solid fa-user-tie"></i>
                 </div>
-                <div class="fact-keyword">性別：男性へのプレッシャー</div>
+                <div class="fact-keyword">男性へのプレッシャー</div>
                 <h3>「存在価値＝仕事」の呪縛</h3>
                 <p>日本社会において、男性は無意識のうちに「仕事でのステータスが自分の価値」と思い込まされがちです。そのため、仕事に意味を見出せなくなった瞬間、自己肯定感が根底から揺らいでしまうのです。</p>
             </div>
         </div>
 
         <div class="fact-summary fade-in">
-            <p>これらが重なる今、あなたが「自分の根っこ」を見つめ直そうとするのは、<br>極めて自然で、必要な防衛反応なのです。</p>
+            <p>
+                <span class="ib">これらが重なる今、</span>
+                <span class="ib">あなたが「自分の根っこ」を見つめ直そうとするのは、</span><br>
+                <span class="ib">極めて自然で、必要な防衛反応なのです。</span>
+            </p>
         </div>
     </section>
 
@@ -683,7 +720,7 @@
         <div class="story-content">
             <div class="story-intro fade-in">
                 <p class="story-quote">「自分には、何もできない。<br>存在する価値もないんじゃないか。」</p>
-                <p>かつて、ナビゲーターである私も同じ思いを抱いていました。</p>
+                <p>かつて、私も同じ思いを抱いていました。</p>
             </div>
             <div class="story-items">
                 <div class="story-item fade-in">
@@ -711,7 +748,7 @@
             <h2 class="fade-in">その時、ある気づきが訪れました。</h2>
             <div class="turning-point-layout">
                 <div class="tp-image-wrapper fade-in">
-                    <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1000&auto=format&fit=crop" alt="命の繋がりを象徴する樹木のイメージ">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1000&auto=format&fit=crop" alt="温かい光と命の繋がりを象徴するイメージ">
                 </div>
                 
                 <div class="turning-point-items">
@@ -730,21 +767,24 @@
         <div class="mission-content">
             <span class="mission-label fade-in">CORE MISSION</span>
             <h2 class="fade-in">
-                答えは、あなたの<br>
+                <span class="ib" style="color:var(--white); border:none; margin:0; padding:0;">答えは、あなたの</span><br>
                 <span>【ここまでの命のバトン(ルーツ)】</span><br>
-                のなかにある
+                <span class="ib" style="color:var(--white); border:none; margin:0; padding:0;">のなかにある</span>
             </h2>
             <p class="fade-in">
-                新しい資格を取ることでも、誰かに認められることでもありません。<br>
-                あなたが突き抜けるための原動力は、外側ではなく、<br>
-                あなた自身の歴史（ルーツ）の中にすでに存在しています。
+                <span class="ib">新しい資格を取ることでも、誰かに認められることでもありません。</span><br>
+                <span class="ib">あなたが突き抜けるための原動力は、外側ではなく、</span><br>
+                <span class="ib">あなた自身の歴史（ルーツ）の中にすでに存在しています。</span>
             </p>
             <p class="fade-in">
                 自分の命の系譜を知り、何のために生かされているのかを深く悟る。
             </p>
             
             <div class="mission-highlight fade-in">
-                <p>これを紐解き、あなたの「命の価値」を再認識するためのプログラム。<br>それが、この『Roots』です。</p>
+                <p>
+                    <span class="ib">これを紐解き、あなたの「命の価値」を再認識するためのプログラム。</span><br>
+                    <span class="ib">それが、この『Roots』です。</span>
+                </p>
             </div>
         </div>
     </section>
@@ -786,7 +826,10 @@
 
     <section class="vision">
         <div class="vision-content">
-            <h2 class="fade-in">このプログラムを受けたあなたは、<br>どんな姿になるのか。</h2>
+            <h2 class="fade-in">
+                <span class="ib">このプログラムを受けたあなたは、</span><br>
+                <span class="ib">どんな姿になるのか。</span>
+            </h2>
             <div class="vision-items">
                 <p class="vision-item fade-in">自分の人生に誇りを持ち、「自分として生まれてきて、本当によかった」と心から思えている状態。</p>
                 <p class="vision-item fade-in">それは、単なる自信ではありません。</p>
@@ -797,7 +840,10 @@
             </div>
             <div class="vision-highlight fade-in">
                 <p>あなたは、その変化の一部になります。</p>
-                <p>あなたの人生は、単なる個人の成功ではなく、<br>日本の未来を作る、大切な一部なのです。</p>
+                <p>
+                    <span class="ib">あなたの人生は、単なる個人の成功ではなく、</span><br>
+                    <span class="ib">日本の未来を作る、大切な一部なのです。</span>
+                </p>
             </div>
         </div>
     </section>
@@ -817,7 +863,10 @@
             <div class="flow-item fade-in">
                 <div class="flow-item-header">
                     <div class="flow-step">STEP 2</div>
-                    <h3>翼さん/瑞季さんと面談</h3>
+                    <h3>
+                        <span class="ib">翼さん / 瑞季さんと</span>
+                        <span class="ib">面談</span>
+                    </h3>
                 </div>
                 <p>実際にお会いして、あなたの人生について、深くお話しします。この面談を通じて、あなたが本当に必要なサポートが何かを、一緒に見つけていきます。</p>
             </div>
@@ -840,7 +889,7 @@
 
     <section class="profile">
         <div class="profile-header">
-            <h2 class="fade-in">ナビゲーター紹介</h2>
+            <h2 class="fade-in">講師紹介</h2>
         </div>
         
         <div class="profile-top fade-in">
@@ -849,7 +898,10 @@
             </div>
             <div class="profile-info">
                 <div class="profile-name">綿内 賢志</div>
-                <div class="profile-title">通信制高校 キャンパス長 / サビアンコーチング 認定講師</div>
+                <div class="profile-title">
+                    <span class="ib">通信制高校 キャンパス長 / </span>
+                    <span class="ib">サビアンコーチング 認定講師</span>
+                </div>
                 <div class="profile-desc">
                     どん底の中で『Roots』と出会い、家系とルーツを知ることで自己信頼を取り戻す。「答えは自分の中にある」という確信を胸に、より多くの日本人に自己信頼の火を灯すため、志範として活動中。
                 </div>
@@ -874,7 +926,10 @@
 
     <section class="cta">
         <div class="cta-content">
-            <h2 class="fade-in">あなたの人生の根っこと向き合う<br>時が来ました。</h2>
+            <h2 class="fade-in">
+                <span class="ib">あなたの人生の根っこと向き合う</span><br>
+                <span class="ib">時が来ました。</span>
+            </h2>
             <div class="cta-text fade-in">
                 <p>今、問い合わせをしてください。</p>
                 <p>その一歩が、あなたの人生を変えます。</p>
