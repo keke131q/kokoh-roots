@@ -36,18 +36,15 @@ body {
   line-height: 1.8; 
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
-  /* はみ出し防止と美しい改行のための設定 */
   word-break: normal;
   overflow-wrap: break-word;
 }
 
-/* 長文は両端揃えで美しく見せる */
 p.justify {
   text-align: justify;
   text-justify: inter-ideograph;
 }
 
-/* デバイスごとの改行制御 */
 .pc-br { display: none; } 
 .sp-br { display: block; }
 @media (min-width: 769px) { 
@@ -55,7 +52,6 @@ p.justify {
   .sp-br { display: none; } 
 }
 
-/* タイポグラフィ（基本はスマホサイズ、PCで大きくする） */
 h1, h2, h3, h4 { font-weight: 700; letter-spacing: 0.05em; }
 p { font-size: 0.95rem; line-height: 1.9; letter-spacing: 0.05em; }
 @media (min-width: 769px) { p { font-size: 1.05rem; } }
@@ -63,7 +59,6 @@ p { font-size: 0.95rem; line-height: 1.9; letter-spacing: 0.05em; }
 a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
 img { max-width: 100%; height: auto; display: block; }
 
-/* --- 共通アニメーション --- */
 .fade-in {
   opacity: 0; 
   transform: translateY(20px);
@@ -297,13 +292,15 @@ img { max-width: 100%; height: auto; display: block; }
 .mission {
   position: relative; padding: 6rem 1rem;
   background-color: var(--navy-deep);
-  background-image: url('https://images.unsplash.com/photo-1504151932400-72d4384f0e69?q=80&w=2000&auto=format&fit=crop');
+  /* 安心感、穏やかさを感じる夕日のビーチ画像に変更 */
+  background-image: url('https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; background-position: center; background-attachment: fixed;
   color: var(--white); text-align: center;
 }
 .mission::before {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(10, 22, 40, 0.9) 0%, rgba(197, 165, 112, 0.3) 100%);
+  /* テキストの可読性を保つためオーバーレイを調整 */
+  background: linear-gradient(to bottom, rgba(10, 22, 40, 0.9) 0%, rgba(197, 165, 112, 0.5) 100%);
   z-index: 1;
 }
 .mission-content { position: relative; z-index: 10; max-width: 55rem; margin: 0 auto; }
@@ -393,7 +390,6 @@ img { max-width: 100%; height: auto; display: block; }
   background-color: var(--white); padding: 1.5rem 1rem; border-radius: 8px;
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
-/* PCの改行バグ修正：STEPは絶対に折り返さない */
 .flow-step {
   background-color: var(--navy-deep); color: var(--white);
   padding: 0.3rem 1rem; border-radius: 9999px;
@@ -480,7 +476,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 .cta-text p { font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
 
-/* アクションボタン領域 */
 .cta-actions {
   margin-top: 3rem;
   display: flex;
@@ -490,7 +485,6 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
 }
 
-/* サブボタン（まずは話す） */
 .cta-button-sub {
   display: flex; align-items: center; justify-content: center;
   padding: 1rem 1.5rem; width: 100%; max-width: 360px;
@@ -505,7 +499,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .cta-button-sub-text small { font-size: 0.8rem; font-weight: normal; }
 
-/* メインボタン（申し込み・詳細） */
 .cta-button-main {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 1.2rem 2rem; width: 100%; max-width: 360px;
@@ -656,8 +649,8 @@ footer p:last-child { margin-bottom: 0; }
                     <div class="turning-point-items">
                         <p class="turning-point-item fade-in"><strong>ご先祖様と家系について、深く知ったのです。</strong></p>
                         <p class="turning-point-item justify fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
-                        <p class="turning-point-item justify fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
-                        <p class="turning-point-item bold fade-in">「自分は、一人で生きているんじゃない。<br>幾千の命が、自分を生かしてくれている。」</p>
+                        <p class="turning-point-item justify fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち. そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
+                        <p class="turning-point-item bold fade-in">「自分は、一人で生きているんじゃない。<br>幾千の命が, 自分を生かしてくれている。」</p>
                         <p class="turning-point-item justify fade-in">その瞬間、命の尊さへの理解が、深い「安心感」となり、自分の人生に誇りが戻りました。</p>
                     </div>
                 </div>
@@ -763,7 +756,7 @@ footer p:last-child { margin-bottom: 0; }
             <div class="profile-top">
                 <div class="profile-image-frame">
                     <div class="img-placeholder">※ここに講師画像を挿入してください</div>
-                    </div>
+                </div>
                 <div class="profile-info">
                     <div class="profile-name">綿内 賢志</div>
                     <span class="profile-title">通信制高校 キャンパス長 /<br class="sp-br"> サビアンコーチング 認定講師</span>
@@ -851,7 +844,6 @@ footer p:last-child { margin-bottom: 0; }
                 document.body.style.opacity = 1;
             }
             
-            // フォールバック処理（JS遅延対策）
             setTimeout(() => {
                 fadeElements.forEach((element) => {
                     if (!element.classList.contains('visible')) {
