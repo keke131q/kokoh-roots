@@ -238,7 +238,6 @@ img { max-width: 100%; height: auto; display: block; }
 .story-content { max-width: 48rem; margin: 0 auto; }
 .story-intro { margin-bottom: 4rem; text-align: center; }
 
-/* 追加した見出し */
 .story-intro h2 {
   font-size: clamp(1.4rem, 5vw, 1.8rem);
   color: var(--gold);
@@ -309,7 +308,6 @@ img { max-width: 100%; height: auto; display: block; }
 .mission {
   position: relative; padding: 7rem 1.5rem;
   background-color: var(--navy-deep);
-  /* 愛や安心感、温かい繋がりを感じるフリー画像 */
   background-image: url('https://images.unsplash.com/photo-1504151932400-72d4384f0e69?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; background-position: center;
   color: var(--white); text-align: center;
@@ -360,7 +358,7 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--white); border-radius: 12px;
   width: 85vw; max-width: 320px; flex-shrink: 0; scroll-snap-align: center; 
   padding: 2rem 1.2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  display: flex; flex-direction: column; gap: 0;
+  display: flex; flex-direction: column; gap: 1rem;
   text-align: center; position: relative; overflow: hidden;
 }
 .feature-card::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 5px; background: var(--gold); }
@@ -387,7 +385,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- 9. VISION & FLOW SECTION --- */
-.vision { padding: 6rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
+.vision { padding: 6rem 1rem; background: var(--navy-deep); color: var(--white); text-align: center; }
 .vision h2 { font-size: 1.5rem; margin-bottom: 3rem; line-height: 1.6; color: var(--gold); }
 .vision-items { display: flex; flex-direction: column; gap: 0; max-width: 50rem; margin: 0 auto; text-align: left; }
 .vision-item { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 1.2rem; }
@@ -410,7 +408,6 @@ img { max-width: 100%; height: auto; display: block; }
   background-color: var(--navy-deep); color: var(--white);
   padding: 0.3rem 1rem; border-radius: 9999px;
   font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; flex-shrink: 0;
-  /* STEP 1 が改行されないようにする */
   white-space: nowrap; 
 }
 .flow-item h3 { font-size: 1.1rem; color: var(--navy-deep); font-weight: 700; margin-bottom: 0.3rem; line-height: 1.4;}
@@ -481,7 +478,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- 11. CTA & BUTTONS --- */
-.cta { padding: 6rem 1.5rem; background: var(--navy-deep); text-align: center; color: var(--white); }
+.cta { padding: 6rem 1rem; background: var(--navy-deep); text-align: center; color: var(--white); }
 .cta-content { max-width: 55rem; margin: 0 auto; width: 100%; }
 .cta-content h2 { font-size: 1.4rem; line-height: 1.6; margin-bottom: 2rem; }
 
@@ -493,7 +490,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 .cta-text p { font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
 
-/* アクションボタン領域 */
 .cta-actions {
   margin-top: 3rem;
   display: flex;
@@ -504,7 +500,6 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
 }
 
-/* サブボタン（興味あり） */
 .cta-button-sub {
   display: flex; align-items: center; justify-content: center;
   padding: 1rem 1.5rem; width: 100%; max-width: 340px;
@@ -519,7 +514,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .cta-button-sub-text small { font-size: 0.85em; font-weight: normal; }
 
-/* メインボタン（申し込み・詳細） */
 .cta-button-main {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 1.1rem 2rem; width: 100%; max-width: 340px;
@@ -543,7 +537,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 footer {
-  padding: 3rem 1.5rem; background-color: #050b14;
+  padding: 3rem 1rem; background-color: #050b14;
   color: rgba(255,255,255,0.4); text-align: center; font-size: 0.8rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -556,6 +550,13 @@ footer p:last-child { margin-bottom: 0; }
 @media (min-width: 769px) {
   footer { padding: 4rem 1.5rem; }
   footer p { margin-bottom: 1.5rem; }
+}
+
+/* スマホでの背景画像（fixedによる拡大バグ）回避策 */
+@media (max-width: 768px) {
+  .hero, .mission, .cta, .story {
+    background-attachment: scroll;
+  }
 }
     </style>
 </head>
@@ -793,7 +794,7 @@ footer p:last-child { margin-bottom: 0; }
             </div>
             <div class="profile-top">
                 <div class="profile-image-frame">
-                    <div class="img-placeholder">※ここに講師画像を挿入してください</div>
+                    <img src="賢志さん.jpg" alt="綿内 賢志">
                 </div>
                 <div class="profile-info">
                     <div class="profile-name">綿内 賢志</div>
