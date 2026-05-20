@@ -77,7 +77,6 @@ img { max-width: 100%; height: auto; display: block; }
   transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .fade-in.visible { 
   opacity: 1; 
   transform: translateY(0); 
@@ -89,7 +88,6 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(0.95) translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .fade-in-scale.visible {
   opacity: 1;
   transform: scale(1) translateY(0);
@@ -101,7 +99,6 @@ img { max-width: 100%; height: auto; display: block; }
   transform: translateX(-30px);
   transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .slide-in-left.visible {
   opacity: 1;
   transform: translateX(0);
@@ -112,7 +109,6 @@ img { max-width: 100%; height: auto; display: block; }
   transform: translateX(30px);
   transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .slide-in-right.visible {
   opacity: 1;
   transform: translateX(0);
@@ -437,14 +433,14 @@ img { max-width: 100%; height: auto; display: block; }
 /* --- 9. VISION & FLOW SECTION --- */
 .vision { padding: 6rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
 .vision h2 { font-size: 1.5rem; margin-bottom: 3rem; line-height: 1.6; color: var(--gold); }
-.vision-items { display: flex; flex-direction: column; gap: 0; max-width: 50rem; margin: 0 auto; text-align: left; }
+.vision-items { display: flex; flex-direction: column; gap: 1.5rem; max-width: 50rem; margin: 0 auto; text-align: center; }
 .vision-item { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 1.2rem; }
 
 @media (min-width: 769px) {
   .vision { padding: 8rem 1.5rem; }
   .vision h2 { font-size: 2.2rem; margin-bottom: 4rem; }
-  .vision-items { text-align: center; }
-  .vision-item { font-size: 1.1rem; line-height: 2; margin-bottom: 1.5rem; }
+  .vision-items { gap: 2rem; }
+  .vision-item { font-size: 1.1rem; line-height: 2; }
 }
 
 .flow { padding: 5rem 1.5rem; background-color: var(--gray-light); }
@@ -613,7 +609,7 @@ footer p:last-child { margin-bottom: 0; }
 <body>
     <section class="hero">
         <div class="hero-content">
-            <div class="event-badge fade-in">【6/27】綿内賢志<br class="sp-br"><span class="pc-inline"> </span>Roots 講師デビュー回</div>
+            <div class="event-badge fade-in-scale">【6/27】綿内賢志<br class="sp-br"><span class="pc-inline"> </span>Roots 講師デビュー回</div>
             
             <span class="hero-label fade-in">人生の根っこと向き合うプログラム</span>
             
@@ -634,7 +630,7 @@ footer p:last-child { margin-bottom: 0; }
             
             <div class="cta-actions fade-in" style="margin-top: 3rem;">
                 <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
-                    詳細・お申し込み <i class="fa-solid fa-chevron-right"></i>
+                    詳細はこちら <i class="fa-solid fa-chevron-right"></i>
                 </a>
             </div>
         </div>
@@ -702,17 +698,17 @@ footer p:last-child { margin-bottom: 0; }
                 <p>かつて、私も同じ思いを抱いていました。</p>
             </div>
             <div class="story-items">
-                <div class="story-item fade-in">
+                <div class="story-item slide-in-left">
                     <h3>新卒1社目での挫折</h3>
                     <p>営業成績は散々。<br>エンジニアに転向しても全く通用せず。</p>
                     <p>「自分は何ができる人間なのか」と、自信は粉々に砕けました。</p>
                 </div>
-                <div class="story-item fade-in">
+                <div class="story-item slide-in-left">
                     <h3>解雇宣告</h3>
                     <p>ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。</p>
                     <p>自尊心は完全に消え去りました。</p>
                 </div>
-                <div class="story-item fade-in">
+                <div class="story-item slide-in-left">
                     <h3>完全な喪失</h3>
                     <p>「自分にできることなんて、何一つない。<br>存在している意味もない。」</p>
                     <p>本気で暗闇の中にいました。</p>
@@ -731,12 +727,12 @@ footer p:last-child { margin-bottom: 0; }
                 
                 <div class="turning-point-text">
                     <div class="turning-point-items">
-                        <p class="turning-point-item fade-in"><strong>ご先祖様と家系について、深く知ったのです。</strong></p>
-                        <p class="turning-point-item fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
-                        <p class="turning-point-item fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。</p>
-                        <p class="turning-point-item fade-in">そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
+                        <p class="turning-point-item slide-in-right"><strong>ご先祖様と家系について、深く知ったのです。</strong></p>
+                        <p class="turning-point-item slide-in-right">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
+                        <p class="turning-point-item slide-in-right">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。</p>
+                        <p class="turning-point-item slide-in-right">そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
                         
-                        <div class="turning-point-highlight fade-in">
+                        <div class="turning-point-highlight fade-in-scale">
                             <p>自分は、一人で生きているんじゃない。<br>幾千の命が、自分を生かしてくれている。</p>
                         </div>
                         
@@ -767,7 +763,7 @@ footer p:last-child { margin-bottom: 0; }
                 自分の命の系譜を知り、<br class="sp-br">何のために生かされているのかを深く悟る。
             </p>
             
-            <div class="mission-highlight fade-in">
+            <div class="mission-highlight fade-in-scale">
                 <p>これを紐解き、<br class="sp-br">あなたの「命の価値」を<br class="sp-br">再認識するためのプログラム。<br>それが、この『Roots』です。</p>
             </div>
         </div>
@@ -832,7 +828,7 @@ footer p:last-child { margin-bottom: 0; }
                 <div class="flow-step">STEP 2</div>
                 <div class="flow-text">
                     <h3 style="margin-bottom: 0.2rem;">オンライン面談</h3>
-                    <span style="display: block; font-size: 0.85rem; color: var(--text-light); font-weight: 700; margin-bottom: 0.6rem;">(翼さん / 瑞季さんと面談)</span>
+                    <span style="display: block; font-size: 0.85rem; color: var(--text-light); font-weight: 700; margin-bottom: 0.6rem;">(誇高社員と面談)</span>
                     <p>実際にお話しし、あなたの現状のモヤモヤや目標をお伺いします。無理な勧誘は一切ありません。</p>
                 </div>
             </div>
@@ -902,7 +898,7 @@ footer p:last-child { margin-bottom: 0; }
                 </a>
                 
                 <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
-                    詳細・お申し込み <i class="fa-solid fa-chevron-right"></i>
+                    詳細はこちら <i class="fa-solid fa-chevron-right"></i>
                 </a>
             </div>
         </div>
