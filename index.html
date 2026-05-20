@@ -39,26 +39,28 @@ body {
   line-height: 1.9; 
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
-  /* 文字のはみ出し防止 */
   word-break: normal;
   overflow-wrap: break-word;
 }
 
-/* デバイスごとの改行制御 */
+/* --- デバイスごとの改行制御 --- */
 .pc-br { display: none; } 
 .sp-br { display: block; }
+.pc-inline { display: none; } /* スマホでは非表示のスペース等 */
+
 @media (min-width: 769px) { 
   .pc-br { display: block; } 
   .sp-br { display: none; } 
+  .pc-inline { display: inline; } /* PCでは表示 */
 }
 
-/* タイポグラフィ（段落の間に自動で余白を開け、5行連続を防止） */
+/* タイポグラフィ */
 h1, h2, h3, h4 { font-weight: 700; letter-spacing: 0.05em; }
 p { 
   font-size: 0.95rem; 
   line-height: 1.9; 
   letter-spacing: 0.05em; 
-  margin-bottom: 1.2rem; /* 段落ごとにスペースを空ける */
+  margin-bottom: 1.2rem;
 }
 p:last-child { margin-bottom: 0; }
 
@@ -94,7 +96,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; 
   align-items: center; 
   justify-content: center;
-  padding: 6rem 1.5rem 8rem; /* スマホ時の左右余白を広めに取り文字数を減らす */
+  padding: 6rem 1.5rem 8rem; 
   background-color: var(--navy-deep);
   background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop');
   background-size: cover; 
@@ -290,9 +292,21 @@ img { max-width: 100%; height: auto; display: block; }
 .turning-point-text h2 { font-size: 1.4rem; color: var(--navy-deep); margin-bottom: 2rem; line-height: 1.5; text-align: center; }
 .turning-point-items { display: flex; flex-direction: column; gap: 0; }
 .turning-point-item { font-size: 0.95rem; color: var(--text-main); line-height: 1.8; margin-bottom: 1.2rem;}
-.turning-point-item.bold {
-  font-weight: 700; font-size: 1.05rem; color: var(--navy-deep);
-  border-left: 4px solid var(--gold); padding-left: 1rem;
+
+/* 安心感を強調するハイライトボックス（改修点） */
+.turning-point-highlight {
+  background-color: rgba(197, 165, 112, 0.15); /* 温かいゴールド背景 */
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 1.5rem 1.2rem;
+  margin: 1rem 0;
+}
+.turning-point-highlight p {
+  font-weight: 700; 
+  font-size: 1.05rem; 
+  color: var(--navy-deep);
+  margin-bottom: 0;
+  line-height: 1.8;
 }
 
 @media (min-width: 769px) {
@@ -301,7 +315,8 @@ img { max-width: 100%; height: auto; display: block; }
   .tp-image-wrapper { height: 450px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
   .turning-point-text h2 { font-size: 2.2rem; margin-bottom: 2.5rem; text-align: left; }
   .turning-point-item { font-size: 1.05rem; line-height: 1.9; }
-  .turning-point-item.bold { font-size: 1.2rem; padding-left: 1.2rem; }
+  .turning-point-highlight { padding: 2rem; margin: 1.5rem 0; }
+  .turning-point-highlight p { font-size: 1.2rem; }
 }
 
 /* --- 7. MISSION SECTION --- */
@@ -385,9 +400,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- 9. VISION & FLOW SECTION --- */
-.vision { padding: 6rem 1rem; background: var(--navy-deep); color: var(--white); text-align: center; }
+.vision { padding: 6rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
 .vision h2 { font-size: 1.5rem; margin-bottom: 3rem; line-height: 1.6; color: var(--gold); }
-.vision-items { display: flex; flex-direction: column; gap: 0; max-width: 50rem; margin: 0 auto; text-align: left; }
+.vision-items { display: flex; flex-direction: column; gap: 1.5rem; max-width: 50rem; margin: 0 auto; text-align: left; }
 .vision-item { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 1.2rem; }
 
 @media (min-width: 769px) {
@@ -449,7 +464,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: block; font-size: 0.9rem; color: var(--beige-dark);
   font-weight: 700; margin-bottom: 1.2rem; line-height: 1.5;
 }
-.profile-desc p { font-size: 0.95rem; color: var(--text-main); text-align: left; margin-bottom: 1rem;}
+.profile-desc p { font-size: 0.95rem; color: var(--text-main); text-align: left;}
 
 .profile-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
 .profile-card {
@@ -460,7 +475,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1.05rem; color: var(--beige-dark); font-weight: 700;
   margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(0,0,0,0.1);
 }
-.profile-card p { font-size: 0.9rem; color: var(--text-main); margin-bottom: 1rem; }
+.profile-card p { font-size: 0.9rem; color: var(--text-main); margin-bottom: 0; }
 
 @media (min-width: 769px) {
   .profile { padding: 8rem 1.5rem; }
@@ -563,7 +578,7 @@ footer p:last-child { margin-bottom: 0; }
 <body>
     <section class="hero">
         <div class="hero-content">
-            <div class="event-badge fade-in">【6/27】綿内賢志 Roots 講師デビュー回</div>
+            <div class="event-badge fade-in">【6/27】綿内賢志<span class="pc-inline"> </span><br class="sp-br">Roots 講師デビュー回</div>
             
             <span class="hero-label fade-in">人生の根っこと向き合うプログラム</span>
             
@@ -571,7 +586,7 @@ footer p:last-child { margin-bottom: 0; }
             <p class="hero-subtitle fade-in">
                 仕事は順調。給料も悪くない。<br>
                 でも、心の奥底から<br class="sp-br">
-                「自分として生まれてきて、<br class="pc-br">本当によかった」<br class="sp-br">
+                「自分として生まれてきて、<br class="sp-br">本当によかった」<br class="pc-br">
                 と思えたことはありますか？
             </p>
             <p class="hero-text fade-in">多くの人は、その問いに答えられません。</p>
@@ -636,8 +651,8 @@ footer p:last-child { margin-bottom: 0; }
 
         <div class="fact-summary fade-in">
             <p>
-                これらが重なる今、<br class="sp-br">あなたが「自分の根っこ」を<br class="sp-br">見つめ直そうとするのは、<br>
-                極めて自然で、必要な防衛反応なのです。
+                これらが重なる今、<br class="sp-br">あなたが「自分の根っこ」を見つめ直そうとするのは、<br>
+                極めて自然で、<br class="sp-br">必要な防衛反応なのです。
             </p>
         </div>
     </section>
@@ -684,7 +699,11 @@ footer p:last-child { margin-bottom: 0; }
                         <p class="turning-point-item fade-in">家系図を紐解き、今の自分が生まれるまでに、両親が、祖父母が、ご先祖様が、どんな思いを持って命を繋いできてくれたかを知りました。</p>
                         <p class="turning-point-item fade-in">幾度もの国難を乗り越え、日本という国をここまで守り抜いて、豊かな国を作ってくださった先人たち。</p>
                         <p class="turning-point-item fade-in">そのエピソードを肚（はら）に落とし込んだ時、自分の原動力（エンジン）が、まるっきり変わった感覚を覚えました。</p>
-                        <p class="turning-point-item bold fade-in">「自分は、一人で生きているんじゃない。<br>幾千の命が、自分を生かしてくれている。」</p>
+                        
+                        <div class="turning-point-highlight fade-in">
+                            <p>自分は、一人で生きているんじゃない。<br class="sp-br">幾千の命が、自分を生かしてくれている。</p>
+                        </div>
+                        
                         <p class="turning-point-item fade-in">その瞬間、命の尊さへの理解が、深い「安心感」となり、自分の人生に誇りが戻りました。</p>
                     </div>
                 </div>
@@ -697,7 +716,7 @@ footer p:last-child { margin-bottom: 0; }
             <span class="mission-label fade-in">CORE MISSION</span>
             <h2 class="fade-in">
                 答えは、あなたの<br>
-                <span>【ここまでの命のバトン(ルーツ)】</span><br>
+                <span>ここまでの命のバトン(ルーツ)</span><br>
                 のなかにある
             </h2>
             <p class="fade-in">
@@ -709,14 +728,14 @@ footer p:last-child { margin-bottom: 0; }
             </p>
             
             <div class="mission-highlight fade-in">
-                <p>これを紐解き、あなたの「命の価値」を<br class="sp-br">再認識するためのプログラム。<br>それが、この『Roots』です。</p>
+                <p>これを紐解き、<br class="sp-br">あなたの「命の価値」を<br class="sp-br">再認識するためのプログラム。<br>それが、この『Roots』です。</p>
             </div>
         </div>
     </section>
 
     <section class="features">
         <div class="features-header">
-            <h2 class="fade-in">Rootsプログラムの3つの強み</h2>
+            <h2 class="fade-in">Rootsプログラム<span class="pc-inline"> </span><br class="sp-br">3つの強み</h2>
         </div>
         <div class="features-grid">
             <div class="feature-card fade-in">
@@ -748,7 +767,7 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="vision">
         <div class="vision-content">
-            <h2 class="fade-in">このプログラムを受けたあなたは、<br class="sp-br">どんな姿になるのか。</h2>
+            <h2 class="fade-in">このプログラムを<br class="sp-br">受けたあなたは、<br class="sp-br">どんな姿になるのか。</h2>
             <div class="vision-items">
                 <p class="vision-item fade-in">自分の人生に誇りを持ち、「自分として生まれてきて本当によかった」と心から思えている状態。</p>
                 <p class="vision-item fade-in">それは単なる自信ではなく、自分の命の価値を他者に提供できる「真の教育者」となった状態です。</p>
@@ -828,9 +847,9 @@ footer p:last-child { margin-bottom: 0; }
 
     <section class="cta">
         <div class="cta-content">
-            <div class="cta-badge fade-in">【6/27】綿内賢志 Roots 講師デビュー回</div>
+            <div class="cta-badge fade-in">【6/27】綿内賢志<span class="pc-inline"> </span><br class="sp-br">Roots 講師デビュー回</div>
             
-            <h2 class="fade-in">あなたの人生の根っこと向き合う<br class="sp-br">時が来ました。</h2>
+            <h2 class="fade-in">あなたの人生の根っこと<br class="sp-br">向き合う時が来ました。</h2>
             <div class="cta-text fade-in">
                 <p>その一歩が、あなたの人生を変えます。</p>
                 <p style="color: var(--gold); margin-top: 1rem; font-weight: bold;">その一歩が、日本の未来を変えます。</p>
@@ -839,7 +858,7 @@ footer p:last-child { margin-bottom: 0; }
             <div class="cta-actions fade-in">
                 <a href="#" class="cta-button-sub">
                     <i class="fa-regular fa-comments"></i> 
-                    <span class="cta-button-sub-text">興味あり<br><small>(賢志と話したい)</small></span>
+                    <span class="cta-button-sub-text">興味あり<br><small>(ZOOM)</small></span>
                 </a>
                 
                 <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
