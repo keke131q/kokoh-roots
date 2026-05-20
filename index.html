@@ -433,14 +433,14 @@ img { max-width: 100%; height: auto; display: block; }
 /* --- 9. VISION & FLOW SECTION --- */
 .vision { padding: 6rem 1.5rem; background: var(--navy-deep); color: var(--white); text-align: center; }
 .vision h2 { font-size: 1.5rem; margin-bottom: 3rem; line-height: 1.6; color: var(--gold); }
-.vision-items { display: flex; flex-direction: column; gap: 1.5rem; max-width: 50rem; margin: 0 auto; text-align: center; }
+.vision-items { display: flex; flex-direction: column; gap: 0; max-width: 50rem; margin: 0 auto; text-align: left; }
 .vision-item { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 1.2rem; }
 
 @media (min-width: 769px) {
   .vision { padding: 8rem 1.5rem; }
   .vision h2 { font-size: 2.2rem; margin-bottom: 4rem; }
-  .vision-items { gap: 2rem; }
-  .vision-item { font-size: 1.1rem; line-height: 2; }
+  .vision-items { text-align: center; }
+  .vision-item { font-size: 1.1rem; line-height: 2; margin-bottom: 1.5rem; }
 }
 
 .flow { padding: 5rem 1.5rem; background-color: var(--gray-light); }
@@ -506,7 +506,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1.05rem; color: var(--beige-dark); font-weight: 700;
   margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(0,0,0,0.1);
 }
-.profile-card p { font-size: 0.9rem; color: var(--text-main); }
+.profile-card p { font-size: 0.9rem; color: var(--text-main); margin-bottom: 1rem; }
 
 @media (min-width: 769px) {
   .profile { padding: 8rem 1.5rem; }
@@ -640,11 +640,11 @@ footer p:last-child { margin-bottom: 0; }
         <div class="empathy-card fade-in-scale">
             <h2>こんな想いを抱いたことは<br class="sp-br">ありませんか？</h2>
             <ul class="empathy-list">
-                <li class="empathy-item fade-in"><span>✓</span><span>自分に自信が持てない</span></li>
-                <li class="empathy-item fade-in"><span>✓</span><span>何かが足りないと感じる</span></li>
-                <li class="empathy-item fade-in"><span>✓</span><span>自分の人生を見つめ直したい</span></li>
-                <li class="empathy-item fade-in"><span>✓</span><span>志を明確にしたい</span></li>
-                <li class="empathy-item fade-in"><span>✓</span><span>自分のルーツを知りたい</span></li>
+                <li class="empathy-item slide-in-left"><span>✓</span><span>自分に自信が持てない</span></li>
+                <li class="empathy-item slide-in-right"><span>✓</span><span>何かが足りないと感じる</span></li>
+                <li class="empathy-item slide-in-left"><span>✓</span><span>自分の人生を見つめ直したい</span></li>
+                <li class="empathy-item slide-in-right"><span>✓</span><span>志を明確にしたい</span></li>
+                <li class="empathy-item slide-in-left"><span>✓</span><span>自分のルーツを知りたい</span></li>
             </ul>
         </div>
     </section>
@@ -703,7 +703,7 @@ footer p:last-child { margin-bottom: 0; }
                     <p>営業成績は散々。<br>エンジニアに転向しても全く通用せず。</p>
                     <p>「自分は何ができる人間なのか」と、自信は粉々に砕けました。</p>
                 </div>
-                <div class="story-item slide-in-left">
+                <div class="story-item slide-in-right">
                     <h3>解雇宣告</h3>
                     <p>ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。</p>
                     <p>自尊心は完全に消え去りました。</p>
@@ -918,37 +918,34 @@ footer p:last-child { margin-bottom: 0; }
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // IntersectionObserverがサポートされているか確認
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -10% 0px' // 画面下部から10%内側に入ったら発火
+                };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target); // 一度発火したら監視を解除
+                        }
+                    });
+                }, observerOptions);
 
-            // すべてのアニメーション対象要素を監視
-            const animatedElements = document.querySelectorAll('.fade-in, .fade-in-scale, .slide-in-left, .slide-in-right');
-            
-            if(animatedElements.length > 0) {
+                // すべてのアニメーション対象要素を監視
+                const animatedElements = document.querySelectorAll('.fade-in, .fade-in-scale, .slide-in-left, .slide-in-right');
                 animatedElements.forEach((element) => {
                     observer.observe(element);
                 });
-            }
-            
-            // フォールバック処理（JS遅延対策）
-            setTimeout(() => {
+            } else {
+                // サポートされていないブラウザのフォールバック（すぐに表示）
+                const animatedElements = document.querySelectorAll('.fade-in, .fade-in-scale, .slide-in-left, .slide-in-right');
                 animatedElements.forEach((element) => {
-                    if (!element.classList.contains('visible')) {
-                        element.classList.add('visible');
-                    }
+                    element.classList.add('visible');
                 });
-            }, 3000); 
+            }
         });
     </script>
     
