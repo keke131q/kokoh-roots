@@ -799,4 +799,135 @@ footer p:last-child { margin-bottom: 0; }
                 <div class="flow-text">
                     <h3 style="margin-bottom: 0.2rem;">オンライン面談</h3>
                     <span style="display: block; font-size: 0.85rem; color: var(--text-light); font-weight: 700; margin-bottom: 0.6rem;">(翼さん / 瑞季さんと面談)</span>
-                    <p>実際にお話しし、あなたの現状のモヤモヤや目標をお伺いします。無理
+                    <p>実際にお話しし、あなたの現状のモヤモヤや目標をお伺いします。無理な勧誘は一切ありません。</p>
+                </div>
+            </div>
+            <div class="flow-item fade-in">
+                <div class="flow-step">STEP 3</div>
+                <div class="flow-text">
+                    <h3>プログラムへのご参加</h3>
+                    <p>納得いただけましたら、あなたのルーツと向き合う本質的な旅がスタートします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile">
+        <div class="profile-box fade-in">
+            <div class="profile-header fade-in">
+                <h2>講師紹介</h2>
+            </div>
+            <div class="profile-top">
+                <div class="profile-image-frame">
+                    <img src="賢志さん.jpg" alt="綿内 賢志">
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">綿内 賢志</div>
+                    <span class="profile-title">通信制高校 キャンパス長 /<br class="sp-br"> サビアンコーチング 認定講師</span>
+                    <div class="profile-desc">
+                        <p>どん底の中で『Roots』と出会い、家系とルーツを知ることで自己信頼を取り戻す。</p>
+                        <p>「答えは自分の中にある」という確信を胸に、より多くの日本人に自己信頼の火を灯すため、志範として活動中。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-card fade-in">
+                    <h3>《幼少期〜大学》</h3>
+                    <p>三世代家族で祖父・祖母と多くの時間を過ごし、家の歴史、土地の歴史、これまでの苦労の話を聞いて育つ。</p>
+                    <p>その影響で人一倍強い郷土愛を持つ。大学では生物学を専攻するも、在学中の御縁により「人と関わりながら次世代に価値を遺す事業」を志す。</p>
+                </div>
+                <div class="profile-card fade-in">
+                    <h3>《転職〜教育の道へ》</h3>
+                    <p>飲食業に転職し、約6年間店長を経験。「長いスパンで人の人生に深く関わり、【人を遺す】仕事がしたい」と決意し、2022年より日本最大の通信制高校に転職。</p>
+                    <p>大分校のキャンパス長を務めながら、進路指導や職員育成に尽力。</p>
+                </div>
+                <div class="profile-card fade-in">
+                    <h3>《誇高〜現在》</h3>
+                    <p>2025年2月に初めて『Roots』を受講し、深く感銘を受ける。</p>
+                    <p>「より多くの日本人に自己信頼の火を灯したい」と強く願い、志範（講師）として活動をスタート。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <div class="cta-badge fade-in">【6/27】綿内賢志<br class="sp-br"><span class="pc-inline"> </span>Roots 講師デビュー回</div>
+            
+            <h2 class="fade-in">あなたの人生の根っこと<br class="sp-br">向き合う時が来ました。</h2>
+            <div class="cta-text fade-in">
+                <p>その一歩が、あなたの人生を変えます。</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: bold;">その一歩が、日本の未来を変えます。</p>
+            </div>
+            
+            <div class="cta-actions fade-in">
+                <a href="#" class="cta-button-sub">
+                    <i class="fa-regular fa-comments"></i> 
+                    <span class="cta-button-sub-text">興味あり<br><small>(賢志と話したい)</small></span>
+                </a>
+                
+                <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
+                    詳細・お申し込み <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>
+                <a href="#">特定商取引法に基づく表記</a>
+                |
+                <a href="#">プライバシーポリシー</a>
+            </p>
+            <p>運営：綿内賢志</p>
+            <p>&copy; 2026 Roots All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            if(fadeElements.length > 0) {
+                fadeElements.forEach((element) => {
+                    observer.observe(element);
+                });
+            } else {
+                document.body.style.opacity = 1;
+            }
+            
+            // フォールバック処理（JS遅延対策）
+            setTimeout(() => {
+                fadeElements.forEach((element) => {
+                    if (!element.classList.contains('visible')) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 2500); 
+        });
+    </script>
+    
+    <noscript>
+        <style>
+            .fade-in { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+</body>
+</html>
