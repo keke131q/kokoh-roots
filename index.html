@@ -339,7 +339,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 0;
   line-height: 1.9;
   letter-spacing: 0;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 @media (min-width: 769px) {
@@ -537,12 +537,18 @@ img { max-width: 100%; height: auto; display: block; }
 
 .cta-text p { font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
 
-/* 注目文言：赤系などの警告色で目立たせる場合。今回はデザインに合わせてゴールド系警告色に */
+/* 注目文言：左寄せ＆ぶら下がりインデント */
 .cta-note {
   font-size: 0.85rem;
   color: #ff9d9d;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   font-weight: bold;
+  text-align: left;
+  width: 100%;
+  max-width: 340px;
+  padding-left: 1em;
+  text-indent: -1em;
+  line-height: 1.6;
 }
 
 .cta-actions {
@@ -584,11 +590,13 @@ img { max-width: 100%; height: auto; display: block; }
   .cta-content h2 { font-size: 2.5rem; margin-bottom: 3.5rem; }
   .cta-badge { font-size: 1.1rem; padding: 0.5rem 1.5rem; margin-bottom: 2rem; }
   .cta-text p { font-size: 1.25rem; margin-bottom: 1rem; }
-  .cta-note { font-size: 1rem; margin-top: 0.8rem; }
+  
   .cta-actions { flex-direction: row; gap: 2rem; margin-top: 4rem; align-items: flex-start;}
   .cta-button-sub { width: auto; padding: 1rem 2rem; max-width: 380px; }
   .cta-button-sub-text { font-size: 1.1rem; }
   .cta-button-main { width: auto; padding: 1.3rem 3.5rem; font-size: 1.3rem; max-width: 380px; }
+  
+  .cta-note { font-size: 0.95rem; margin-top: 1rem; max-width: 380px; }
 }
 
 footer {
@@ -906,7 +914,8 @@ footer p:last-child { margin-bottom: 0; }
                         <i class="fa-brands fa-line" style="color: #06C755;"></i> 
                         <span class="cta-button-sub-text">興味あり<br><small>(賢志と話したい)</small></span>
                     </a>
-                    <p class="cta-note">※LINE追加後、「賢志と面談希望」とメッセージをお送りください。</p>
+                    
+                    <p class="cta-note">※LINE追加後、『賢志と面談希望』と<br>メッセージをお送りください。</p>
                 </div>
                 
                 <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
