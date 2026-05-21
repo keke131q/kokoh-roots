@@ -537,6 +537,14 @@ img { max-width: 100%; height: auto; display: block; }
 
 .cta-text p { font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
 
+/* 注目文言：赤系などの警告色で目立たせる場合。今回はデザインに合わせてゴールド系警告色に */
+.cta-note {
+  font-size: 0.85rem;
+  color: #ff9d9d;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
 .cta-actions {
   margin-top: 3rem;
   display: flex;
@@ -576,7 +584,8 @@ img { max-width: 100%; height: auto; display: block; }
   .cta-content h2 { font-size: 2.5rem; margin-bottom: 3.5rem; }
   .cta-badge { font-size: 1.1rem; padding: 0.5rem 1.5rem; margin-bottom: 2rem; }
   .cta-text p { font-size: 1.25rem; margin-bottom: 1rem; }
-  .cta-actions { flex-direction: row; gap: 2rem; margin-top: 4rem; }
+  .cta-note { font-size: 1rem; margin-top: 0.8rem; }
+  .cta-actions { flex-direction: row; gap: 2rem; margin-top: 4rem; align-items: flex-start;}
   .cta-button-sub { width: auto; padding: 1rem 2rem; max-width: 380px; }
   .cta-button-sub-text { font-size: 1.1rem; }
   .cta-button-main { width: auto; padding: 1.3rem 3.5rem; font-size: 1.3rem; max-width: 380px; }
@@ -705,7 +714,7 @@ footer p:last-child { margin-bottom: 0; }
                 </div>
                 <div class="story-item slide-in-right">
                     <h3>解雇宣告</h3>
-                    <p>ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。</p>
+                    <p>オーガニックレストランの店長時代、ミスを連発し、オーナーから「君と一緒に働き続けることはできない」と告げられたあの日。</p>
                     <p>自尊心は完全に消え去りました。</p>
                 </div>
                 <div class="story-item slide-in-left">
@@ -892,10 +901,13 @@ footer p:last-child { margin-bottom: 0; }
             </div>
             
             <div class="cta-actions fade-in">
-                <a href="#" class="cta-button-sub">
-                    <i class="fa-regular fa-comments"></i> 
-                    <span class="cta-button-sub-text">興味あり<br><small>(賢志と話したい)</small></span>
-                </a>
+                <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <a href="https://line.me/ti/p/W8MHdOxjI_" class="cta-button-sub" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-line" style="color: #06C755;"></i> 
+                        <span class="cta-button-sub-text">興味あり<br><small>(賢志と話したい)</small></span>
+                    </a>
+                    <p class="cta-note">※LINE追加後、「賢志と面談希望」とメッセージをお送りください。</p>
+                </div>
                 
                 <a href="https://kokoh.co.jp/application/" class="cta-button-main animate-pulse" target="_blank" rel="noopener noreferrer">
                     詳細はこちら <i class="fa-solid fa-chevron-right"></i>
